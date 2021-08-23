@@ -88,37 +88,39 @@ def left_info():
     WebDriverWait(driver, 15).until(lambda x: x.find_element_by_xpath('//*[@class="halfWidth"][1]//tr[@title][1]'))
     page_text = driver.find_element_by_xpath('//div[@id="pager"]//li[@class="ng-scope"][1]/span').get_attribute(
         'textContent')
-    print(page_text)
-    page_num = re.sub(u"共(.*?)页", page_text, '')
-    print(page_num)
+    page_num = str(re.findall(r'共(.+?)页', page_text))[0]
+    for page in range(int(page_num)):
+        for x in range(1, 11):
+            driver.find_element_by_xpath('//*[@class="halfWidth"][1]//tr[@title][' + str(x) + ']').click()
+            handles = driver.window_handles
+            driver.switch_to.window(handles[-1])
+            WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, '//*[@class="t_data"]/tr')))
+            count = driver.find_element_by_xpath('//div[@class="comCon"]/span[1]').get_attribute('textContent')
+            print(int(count))
+            if int(count) > 10:  # 判断详情页页数
+                info_page = int(count) // 10
+                last_page = int(count) % 10
+                for i in range(1, info_page + 1):
+                    text = driver.find_element_by_xpath('//*[@class="t_data"]/tr[' + str(i) + ']').get_attribute('textContent')
+                    print(text)
+                driver.close()
+                print(handles)
+                driver.switch_to.window(handles[0])
+                for last_num in range(1, last_page + 1):
+                    text = driver.find_element_by_xpath('//*[@class="t_data"]/tr[' + str(i) + ']').get_attribute(
+                        'textContent')
+                    print(text)
+                if info_page > 1:
+                    for num in range(info_page):
+                        driver.find_element_by_xpath('//a[contains(text(), "下一页")]').click()
+                else:
+                    break
 
-    for x in range(1, 11):
-        driver.find_element_by_xpath('//*[@class="halfWidth"][1]//tr[@title][' + str(x) + ']').click()
-        handles = driver.window_handles
-        driver.switch_to.window(handles[-1])
-        WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, '//*[@class="t_data"]/tr')))
-        count = driver.find_element_by_xpath('//div[@class="comCon"]/span[1]').get_attribute('textContent')
-        print(int(count))
-        if int(count) > 10:  # 判断详情页页数
-            info_page = int(count) // 10
-            last_page = int(count) % 10
-            for i in range(1, info_page + 1):
-                text = driver.find_element_by_xpath('//*[@class="t_data"]/tr[' + str(i) + ']').get_attribute('textContent')
-                print(text)
-            driver.close()
-            print(handles)
-            driver.switch_to.window(handles[0])
-            for last_num in range(1, last_page + 1):
-                text = driver.find_element_by_xpath('//*[@class="t_data"]/tr[' + str(i) + ']').get_attribute(
-                    'textContent')
-                print(text)
-            if info_page > 1:
-                for num in range(info_page):
-                    driver.find_element_by_xpath('//a[contains(text(), "下一页")]').click()
             else:
-                break
+                info_page = 1
+                for num in range(int(count)):
+                    text = driver.find_element_by_xpath('//*[@class="t_data"]/tr[' + str(num + 1) + ']').get_attribute(
+                        'textContent')
 
-        else:
-            info_page = 1
 
 left_info()
