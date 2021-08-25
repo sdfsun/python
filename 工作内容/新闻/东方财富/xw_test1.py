@@ -36,7 +36,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
     options.add_argument('--proxy-server' + proxies)
-    driver = webdriver.Chrome(executable_path='F:\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -54,7 +54,7 @@ def getDriver():
 def get_text(url):
     option = webdriver.ChromeOptions()
     option.add_argument('headless')
-    driver = webdriver.Chrome(executable_path='F://chromedriver.exe')
+    driver = webdriver.Chrome()
     driver.get(url)
     # source = driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]').get_attribute('innerHTML')
     # source1 = re.sub(u"\\<.*?\\>", "", source)
@@ -95,7 +95,7 @@ def get_text(url):
 if __name__ == '__main__':
     option = webdriver.ChromeOptions()
     option.add_argument('headless')
-    driver = webdriver.Chrome(executable_path='F://chromedriver.exe')
+    driver = webdriver.Chrome()
     url = 'https://so.eastmoney.com/web/s?keyword=字节跳动&pageindex=1'
     driver.get(url)
     for i in range(1, 3):  # 这页的i条新闻

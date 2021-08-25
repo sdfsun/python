@@ -1,6 +1,6 @@
-#encoding=utf-8
-#最多可访问200页 即1000条记录
-#可通过分类缩小范围以获取更多的数据      改变检索式就行
+# encoding=utf-8
+# 最多可访问200页 即1000条记录
+# 可通过分类缩小范围以获取更多的数据      改变检索式就行
 
 from selenium import webdriver
 import requests
@@ -43,7 +43,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
 
-    driver = webdriver.Chrome(executable_path='F:\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -56,14 +56,15 @@ def getDriver():
 
     return driver
 
+
 if __name__ == '__main__':
     url = "https://cprs.patentstar.com.cn/Account/LoginOut"
-    #desired_capabilities = DesiredCapabilities.CHROME
-    #desired_capabilities["pageLoadStrategy"] = "none"
+    # desired_capabilities = DesiredCapabilities.CHROME
+    # desired_capabilities["pageLoadStrategy"] = "none"
     driver = getDriver()
     driver.get(url)
     time.sleep(2)
-    driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18731341598')#登录页  需要账号密码
+    driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18410065868')  # 登录页  需要账号密码
     time.sleep(10)
     driver.find_element_by_xpath('//*[@id="login"]').click()
     time.sleep(2)
@@ -85,20 +86,21 @@ if __name__ == '__main__':
     driver.find_element_by_xpath('//*[@id="TxtSearch"]').send_keys("((@华为技术有限公司/PA))*(1/PT+8/PT)*(1/LG)")
     time.sleep(1)
     driver.find_element_by_xpath('//*[@id="searchbtn2"]').click()
-    flag=0
-    pages=0
+    flag = 0
+    pages = 0
     while True:
-        for i in range(1,6):
+        for i in range(1, 6):
             try:
-                #WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('//*[@id="listcontainer"]/div['+str(i)+']'))
-                info=driver.find_element_by_xpath('//*[@id="listcontainer"]/div['+str(i)+']').get_attribute('innerHTML').replace('\u2011','')
+                # WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('//*[@id="listcontainer"]/div['+str(i)+']'))
+                info = driver.find_element_by_xpath('//*[@id="listcontainer"]/div[' + str(i) + ']').get_attribute(
+                    'innerHTML').replace('\u2011', '')
             except:
                 driver.quit()
                 print('结束！！')
                 exit(0)
-            info1 = re.sub(u"\\</div\\>", "*", info)
-            info1 = re.sub(u"\\</p\\>", ",", info1)
-            info2 = re.sub(u"\\<.*?\\>", " ", info1)
+            info1 = re.sub(u"</div>", "*", info)
+            info1 = re.sub(u"</p>", ",", info1)
+            info2 = re.sub(u"<.*?>", " ", info1)
             info3 = re.sub(u"\n", "", info2)
             info4 = re.sub(u"\t", "", info3)
             info5 = re.sub(u" ", "", info4)
@@ -109,24 +111,25 @@ if __name__ == '__main__':
         flag = flag + 1
         try:
 
-            if flag==1:
-                #WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[4]'))
-                pages = driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[3]').get_attribute('innerHTML')
+            if flag == 1:
+                # WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[4]'))
+                pages = driver.find_element_by_xpath(
+                    '/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[3]').get_attribute('innerHTML')
                 driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[4]').click()
                 continue
-            elif flag==2 or flag==int(pages)-1:
-                #倒数第二页会变为a[5]
-                #WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[5]'))
+            elif flag == 2 or flag == int(pages) - 1:
+                # 倒数第二页会变为a[5]
+                # WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[5]'))
                 driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[5]').click()
-                #continue
+                # continue
                 break
-            elif flag==int(pages):
-                #最后一页不能点，直接退出
+            elif flag == int(pages):
+                # 最后一页不能点，直接退出
                 break
             else:
-                #WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[6]'))
+                # WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[6]'))
                 driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[6]').click()
                 continue
-        except :
+        except:
             break
     driver.quit()

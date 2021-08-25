@@ -7,8 +7,13 @@
 # @FilePath: /python/test/test_foodSampling.py
 # @Description: 
 
-import re
+import requests
+from user_agent import generate_user_agent
+from lxml import etree
+import time
 
-
-Str = '当前第1页/共8页 共80条记录数'
-text = re.sub('')
+url = 'https://spcjsac.gsxt.gov.cn/'
+headers = {
+    'user-agent': generate_user_agent(),
+    'Connection': 'close'
+}

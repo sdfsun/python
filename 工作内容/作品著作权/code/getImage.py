@@ -1,4 +1,4 @@
-#encoding=utf-8
+# encoding=utf-8
 import requests
 from selenium import webdriver
 import time
@@ -6,6 +6,7 @@ import re
 from urllib3.exceptions import LocationParseError
 from requests.exceptions import ProxyError
 import random
+
 
 def getDriver():
     headers = {
@@ -40,7 +41,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
 
-    driver = webdriver.Chrome(executable_path='F:\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -52,6 +53,7 @@ def getDriver():
     })
 
     return driver
+
 
 def getProxy():
     while True:
@@ -70,6 +72,7 @@ def getProxy():
         else:
             time.sleep(20)
 
+
 if __name__ == '__main__':
     url = "http://qgzpdj.ccopyright.com.cn/registrationPublicity.html"
     driver = getDriver()
@@ -78,17 +81,17 @@ if __name__ == '__main__':
     driver.find_element_by_xpath('//*[@id="searchCont"]').send_keys('粤作登字-2014-L-00000435')
     driver.find_element_by_xpath('//*[@id="j-popup"]').click()
     while True:
-        proxies=getProxy()
+        proxies = getProxy()
         try:
-            for i in range(4198,10000):
-                time.sleep(random.randint(1,3))
-                image_url=driver.find_element_by_xpath('//*[@class="yidun_bg-img"]').get_attribute('src')
-                response=requests.get(image_url,proxies=proxies)
+            for i in range(4198, 10000):
+                time.sleep(random.randint(1, 3))
+                image_url = driver.find_element_by_xpath('//*[@class="yidun_bg-img"]').get_attribute('src')
+                response = requests.get(image_url, proxies=proxies)
                 f = open(str(i) + '.jpg', 'wb')
                 f.write(response.content)
                 f.close()
                 driver.find_element_by_xpath('//*[@class="yidun_refresh"]').click()
-                time.sleep(random.randint(1,3))
+                time.sleep(random.randint(1, 3))
         except LocationParseError:
             print(1)
             break
@@ -97,4 +100,3 @@ if __name__ == '__main__':
             break
 
     driver.quit()
-

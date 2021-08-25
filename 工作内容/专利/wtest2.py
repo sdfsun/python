@@ -1,4 +1,4 @@
-#encoding=utf-8
+# encoding=utf-8
 
 
 from selenium import webdriver
@@ -28,7 +28,7 @@ def getDriver():
     # options.add_argument('--headless')  # 无界面形式
     options.add_argument('--no-sandbox')  # 取消沙盒模式
     # options.add_argument('-kiosk')    # 全屏
-    options.add_argument("--window-size=1920,900")  # 指定浏览器分辨率
+    # options.add_argument("--window-size=1920,900")  # 指定浏览器分辨率
     # options.set_window_size(480, 600)  # 窗口大小变化
     options.add_argument('--disable-setuid-sandbox')
     options.add_experimental_option("useAutomationExtension", False)
@@ -40,7 +40,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
 
-    driver = webdriver.Chrome(executable_path='F:\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -53,12 +53,13 @@ def getDriver():
 
     return driver
 
+
 if __name__ == '__main__':
     url = "https://cprs.patentstar.com.cn/Account/LoginOut"
     driver = getDriver()
     driver.get(url)
     time.sleep(2)
-    driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18731341598')
+    driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18410065868')
     time.sleep(20)
     driver.find_element_by_xpath('//*[@id="login"]').click()
     time.sleep(2)
@@ -68,7 +69,8 @@ if __name__ == '__main__':
     time.sleep(1)
     driver.find_element_by_xpath('//*[@id="searchbtn2"]').click()
     time.sleep(3)
-    pages=driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[3]').get_attribute('innerHTML')
+    pages = driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[3]').get_attribute(
+        'innerHTML')
     print(pages)
     driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[2]/div[4]/div[2]/div[2]/a[4]').click()
     time.sleep(2)
