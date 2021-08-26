@@ -46,8 +46,7 @@ def getDriver(headers):
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
     options.add_argument('--proxy-server={}'.format(proxy(headers)))
-    browser = webdriver.Chrome(options=options,
-                               executable_path='C:/Users/18410/AppData/Local/Google/Chrome/Application/chromedriver.exe')
+    browser = webdriver.Chrome(options=options)
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     # browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
