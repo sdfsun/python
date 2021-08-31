@@ -8,8 +8,9 @@
 # @Description: 时间戳转换
 
 import time
-timestamp = 195555768
+
+timestamp = 1630048153
 dateArray = time.localtime(timestamp)
 otherStyleTime = time.strftime('%Y-%m-%d %H:%M:%S', dateArray)
 
-print(otherStyleTime)
+print(int(time.time()) * 1000)

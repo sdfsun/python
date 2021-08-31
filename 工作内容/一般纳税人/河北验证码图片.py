@@ -17,5 +17,5 @@ for i in range(5000):
     url = 'https://etax.hebei.chinatax.gov.cn/wszx-web/captcha.jpg?' + str(random.random())
     res = requests.get(url)
     name = str(i) + '.jpg'
-    with open('./HebeiVerificationCode/' + name, 'wb') as f:
+    with open('/home/kerwin/Dev/河北验证码图片/' + name, 'wb') as f:
         f.write(res.content)
