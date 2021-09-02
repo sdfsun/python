@@ -1,12 +1,13 @@
-#! user/bin/env python
+#!user/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
-# @Date: 2021/8/30 下午5:24
+# @Date: 2021-09-01 16:35:06
 # @LastEditors: 王琨
-# @FileName: henan.py
-# @Description: 河南
+# @LastEditTime: 2021-09-01 16:35:07
+# @FilePath: /python/工作内容/一般纳税人/shanghai.py
+# @Description: 
 
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, NoAlertPresentException
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
@@ -41,6 +42,7 @@ def getDriver():
     options.add_argument('--mute-audio')
     # options.add_argument('--proxy-server={}'.format(proxy(headers)))
     browser = webdriver.Chrome(options=options)
+    browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {"source": """
@@ -52,23 +54,25 @@ def getDriver():
     return browser
 
 
-def main():
+def main(identifier):
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["pageLoadStrategy"] = "none"
-    url = 'https://etax.henan.chinatax.gov.cn/web/dzswj/taxclient/ggfw/query/ybnsrcx.html'
-    identifier = '91410300614820871W'
+    url = 'http://shanghai.chinatax.gov.cn/xbwz/wzfw/yihushi.jsp'
+    
     driver = getDriver()
     driver.get(url)
-    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@class="wxl_jnsrsbh"]'))
+    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@id="sina_anywhere_iframe"]'))
 
-    driver.find_element_by_xpath('//*[@class="wxl_jnsrsbh"]').send_keys(identifier)
+    # iframe = driver.find_element_by_xpath('//*[@id="ifrMain"]')
+    driver.find_element_by_xpath('//*[@id="shhtym"]').send_keys(identifier)
 
     time.sleep(2)
+
     while True:
         # 截取验证码图片
-        driver.save_screenshot('./验证码图片/henan_picture.png')  # 全屏截图
+        driver.save_screenshot('./验证码图片/shanghai_picture.png')  # 全屏截图
         # 定位验证码在iframe中的坐标
-        element = driver.find_element_by_id('picCode')
+        element = driver.find_element_by_xpath('//*[@id="yzm1"]')
         print(element.location)
         print(element.size)
         # 真实坐标需要加上iframe的坐标
@@ -76,26 +80,31 @@ def main():
         top = element.location['y']
         right = element.location['x'] + element.size['width']
         bottom = element.location['y'] + element.size['height']
-        im = Image.open('./验证码图片/henan_picture.png')
+        im = Image.open('./验证码图片/shanghai_picture.png')
         im = im.crop((left, top, right, bottom))
-        im.save('./验证码图片/henan_identifier.png')
+        im.save('./验证码图片/shanghai_identifier.png')
 
         # 识别验证码
-        with open('./验证码图片/henan_identifier.png', 'rb') as f:
+        with open('./验证码图片/shanghai_identifier.png', 'rb') as f:
             image = f.read()
         sdk = muggle_ocr.SDK(model_type=muggle_ocr.ModelType.Captcha)
         text = sdk.predict(image_bytes=image)
         print(text)
         # 输入验证码
-        driver.find_element_by_xpath('//*[@name="rcode"]').send_keys(text)
+        driver.find_element_by_xpath('//*[@id="yzm"]').send_keys(text)
         time.sleep(1)
         # 点击“查询”
-        driver.find_element_by_xpath('//*[@class="wxl_btn wxl_bg_blue f_right"]').click()
+        driver.find_element_by_xpath('//*[@id="cx"]').click()
         time.sleep(3)
         try:
-            info = driver.find_element_by_xpath('//*[@class="odd"]').get_attribute('textContent')
+            driver.switch_to_alert().accept()
+        except NoAlertPresentException:
+            pass
+        try:
+            info = driver.find_element_by_xpath('//div[@class="pwdEdit"]/div[1]/ul').get_attribute('textContent')
         except NoSuchElementException:
-            driver.find_element_by_xpath('//*[@name="rcode"]').clear()
+            driver.find_element_by_xpath('//*[@id="yzm"]').clear()
+            driver.find_element_by_xpath('//*[@id="yzm1"]').click()
             time.sleep(2)
             continue
         print(info)
@@ -105,4 +114,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    ID = '91310000329555773R'
+    main(ID)

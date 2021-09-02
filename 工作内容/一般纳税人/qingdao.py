@@ -3,9 +3,8 @@
 # @Author: 王琨
 # @Date:   2021-08-31 18:38:13
 # @Last Modified by:   王琨
-# @Last Modified time: 2021-08-31 18:39:00
+# @Last Modified time: 2021-08-31 19:09:07
 # @Description: 青岛
-
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
@@ -36,8 +35,7 @@ def getDriver():
     # options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--incognito')  # 启动进入隐身模式
     options.add_argument('--lang=zh-CN')  # 设置语言为简体中文
-    options.add_argument(
-        '--user-agent=' + generate_user_agent())
+    options.add_argument('--user-agent=' + generate_user_agent())
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
@@ -46,13 +44,11 @@ def getDriver():
     browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
-    browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
-        "source": """
+    browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {"source": """
         Object.defineProperty(navigator, 'webdriver', {
             get: () => undefined
             })
-        """
-    })
+        """})
 
     return browser
 
@@ -60,19 +56,11 @@ def getDriver():
 def main():
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["pageLoadStrategy"] = "none"
-    url = 'https://etax.qingdao.chinatax.gov.cn:6883/newdzswj/wsbstgz/cygn/gzfw/gzcx/main_ybnsrzgcx.jsp'
+    url = 'https://etax.qingdao.chinatax.gov.cn:6883/newdzswj/gotoYbnsrzg.do'
     identifier = '91370200163615667J'
     driver = getDriver()
     driver.get(url)
-    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@id="ifrMain"]'))
-
-    # 获取iframe位置
-    iframe_ele = driver.find_element_by_xpath('//*[@id="ifrMain"]')
-    x = iframe_ele.location['x']
-    y = iframe_ele.location['y']
-
-    # iframe = driver.find_element_by_xpath('//*[@id="ifrMain"]')
-    driver.switch_to.frame('ifrMain')
+    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@id="nsrsbh"]'))
     time.sleep(5)
     driver.find_element_by_xpath('//*[@id="nsrsbh"]').send_keys(identifier)
 
@@ -86,10 +74,10 @@ def main():
         print(element.location)
         print(element.size)
         # 真实坐标需要加上iframe的坐标
-        left = element.location['x'] + x
-        top = element.location['y'] + y
-        right = element.location['x'] + element.size['width'] + x
-        bottom = element.location['y'] + element.size['height'] + y
+        left = element.location['x']
+        top = element.location['y']
+        right = element.location['x'] + element.size['width']
+        bottom = element.location['y'] + element.size['height']
         im = Image.open('./验证码图片/qingdao_picture.png')
         im = im.crop((left, top, right, bottom))
         im.save('./验证码图片/qingdao_identifier.png')
@@ -109,11 +97,8 @@ def main():
         try:
             info = driver.find_element_by_xpath('//*[@id="tbodylist"]/tr').get_attribute('textContent')
         except NoSuchElementException:
-            driver.switch_to.default_content()
             driver.find_element_by_xpath('//a[contains(text(),"确定")]').click()
-            driver.switch_to.frame('ifrMain')
             driver.find_element_by_xpath('//*[@id="validateCode"]').clear()
-            driver.find_element_by_xpath('//a[contains(text(),"看不清楚，换一张图")]').click()
             time.sleep(2)
             continue
         print(info)
