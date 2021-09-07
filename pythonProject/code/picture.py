@@ -17,9 +17,7 @@ from multiprocessing import Process
 
 
 def main(num):
-    headers = {
-        'User-Agent': generate_user_agent()
-    }
+    headers = {'User-Agent': generate_user_agent()}
     while num < 180259:
         try:
             time.sleep(1)
@@ -30,10 +28,8 @@ def main(num):
             print(str(num))
             num += 1
         except:
-            headers = {
-                'User-Agent': generate_user_agent()
-            }
-            print('***'*20)
+            headers = {'User-Agent': generate_user_agent()}
+            print('***' * 20)
             continue
 
 
@@ -43,8 +39,7 @@ if __name__ == '__main__':
     s.mount('http://', HTTPAdapter(max_retries=10))
     s.mount('https://', HTTPAdapter(max_retries=10))
 
-    with open('./data/gamewallpaper.json') as f:
+    with open('../data/gamewallpaper.json') as f:
         url_list = json.loads(f.read())
 
     main(90)
-

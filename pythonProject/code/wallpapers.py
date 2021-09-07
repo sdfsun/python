@@ -16,7 +16,7 @@ from requests.adapters import HTTPAdapter
 
 
 def main():
-    url_list = csv.reader(open('./data/page_url.csv', encoding='utf-8'))
+    url_list = csv.reader(open('../data/page_url.csv', encoding='utf-8'))
     failed_url = []
     x = 1
     for url in url_list:
@@ -41,7 +41,7 @@ def main():
             for part in url_list:
                 real_url = 'https://wall.alphacoders.com' + part
                 List = [real_url]
-                with open('./data/boxgrid_url.csv', 'a') as f:
+                with open('../data/boxgrid_url.csv', 'a') as f:
                     f_csv = csv.writer(f)
                     f_csv.writerow(List)
             print(str(count))

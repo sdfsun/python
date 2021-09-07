@@ -93,7 +93,7 @@ def main():
         text = sdk.predict(image_bytes=image)
         print(text)
         # 输入验证码
-        driver.find_element_by_xpath  ('//*[@id="code"]').send_keys(text)
+        driver.find_element_by_xpath('//*[@id="code"]').send_keys(text)
         time.sleep(1)
         # 点击“查询”
         driver.find_element_by_xpath('//*[@id="CxBtn"]').click()
@@ -104,7 +104,7 @@ def main():
             driver.find_element_by_xpath('//button[@type="button"]').click()
             driver.find_element_by_xpath('//*[@id="code"]').clear()
             driver.find_element_by_xpath('//*[@id="captcha"]').click()
-            time.sleep(2)
+            time.sleep(2) 
             continue
         print(info)
         break
