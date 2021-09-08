@@ -1,4 +1,4 @@
-#! user/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-27 17:06:40
@@ -61,9 +61,21 @@ def main(identifier, Name):
     driver = getDriver()
     driver.get(url)
     WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//input[@name="nsrsbh"]'))
+    src = driver.find_element_by_xpath('//*[@class="yzm"]').get_attribute('src')
+    print(src)
+    headers = {
+        'Connection': 'close',
+        'user-agent': generate_user_agent()
+    }
+    res = requests.get('https://etax.ningbo.chinatax.gov.cn/yhs-web/api/yhsyzm/get?1631008417224', headers=headers, )
+    print(res.status_code)
+    with open('./src.jpg', 'wb') as f:
+        f.write(res.content)
+    import ipdb
+    ipdb.set_trace()
 
-    driver.find_element_by_xpath('//input[@name="nsrsbh"]').send_keys(identifier)
-    driver.find_element_by_xpath('//input[@name="nsrmc"]').send_keys(Name)
+    # driver.find_element_by_xpath('//input[@name="nsrsbh"]').send_keys(identifier)
+    # driver.find_element_by_xpath('//input[@name="nsrmc"]').send_keys(Name)
 
     time.sleep(2)
     while True:

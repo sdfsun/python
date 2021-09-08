@@ -11,9 +11,11 @@ import requests
 from user_agent import generate_user_agent
 from lxml import etree
 import time
-
-url = 'https://spcjsac.gsxt.gov.cn/'
 headers = {
-    'user-agent': generate_user_agent(),
-    'Connection': 'close'
-}
+        'Connection': 'close',
+        'user-agent': generate_user_agent()
+    }
+res = requests.get('https://etax.ningbo.chinatax.gov.cn/yhs-web/api/yhsyzm/get?1631008417224', headers=headers, )
+print(res.status_code)
+with open('./src.jpg', 'wb') as f:
+    f.write(res.content)
