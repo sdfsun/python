@@ -1,10 +1,7 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-26 14:28:57
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-26 14:29:51
-# @FilePath: /python/工作内容/一般纳税人/山西.py
 # @Description: 山西  滑动验证码 未完成
 
 
@@ -17,12 +14,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from user_agent import generate_user_agent
-import requests
 import time
-import re
-import os
 from PIL import Image
-import muggle_ocr
+import base64
+import numpy as np
+import cv2
+from get import get
+import random
 
 
 def getDriver():
@@ -38,12 +36,13 @@ def getDriver():
     options.add_argument('--incognito')  # 启动进入隐身模式
     options.add_argument('--lang=zh-CN')  # 设置语言为简体中文
     options.add_argument(
-        '--user-agent=' + generate_user_agent())
+        '--user-agent={}'.format(generate_user_agent()))
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
     # options.add_argument('--proxy-server={}'.format(proxy(headers)))
     browser = webdriver.Chrome(options=options)
+    browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
@@ -68,19 +67,29 @@ def main(identifier):
     time.sleep(2)
     driver.find_element_by_xpath('//div[@class="search-form-column"]/button').click()
 
-    driver.save_screenshot('./验证码图片/shanxi_picture.png')
-    element = driver.find_element_by_xpath('//img[@class="backImg"]')
-    print(element.location)
-    print(element.size)
-    # 真实坐标需要加上iframe的坐标
-    left = element.location['x']
-    top = element.location['y']
-    right = element.location['x'] + element.size['width']
-    bottom = element.location['y'] + element.size['height']
-    im = Image.open('./验证码图片/shanxi_picture.png')
-    im = im.crop((left, top, right, bottom))
-    im.save('./验证码图片/shanxi_identifier.png')
-    time.sleep(5)
+    while True:
+        image_src_url = driver.find_element_by_xpath('//*[@id="captchaContainer"]/div/div/div[2]/div/div[1]/div/img').get_attribute('src').split(',', 1)[-1]
+        img_data = base64.b64decode(image_src_url)
+        with open('./0.jpg', 'wb') as f:
+            f.write(img_data)
+        dic = get()
+        dic = eval(dic)
+        x = dic['trace']
+        element = driver.find_element_by_xpath('//div[@class="verify-move-block"]')
+        action = ActionChains(driver)
+        action.click_and_hold(element).perform()
+        for step in x:
+            action.move_by_offset(xoffset=step, yoffset=0).perform()
+            action = ActionChains(driver)
+        action.release().perform()
+        time.sleep(2)
+        try:
+            info = driver.find_element_by_xpath('//*[@id="1"]').get_attribute('textContent')
+            print(info)
+            break
+        except NoSuchElementException:
+            continue
+    driver.quit()
 
 
 if __name__ == '__main__':

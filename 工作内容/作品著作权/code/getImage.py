@@ -83,7 +83,7 @@ if __name__ == '__main__':
     while True:
         proxies = getProxy()
         try:
-            for i in range(4198, 10000):
+            for i in range(1, 10000):
                 time.sleep(random.randint(1, 3))
                 image_url = driver.find_element_by_xpath('//*[@class="yidun_bg-img"]').get_attribute('src')
                 response = requests.get(image_url, proxies=proxies)

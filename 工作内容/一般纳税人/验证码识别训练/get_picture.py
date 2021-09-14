@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-09-01 14:50:22
@@ -27,7 +27,7 @@ def getDriver():
     # options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--incognito')  # 启动进入隐身模式
     options.add_argument('--lang=zh-CN')  # 设置语言为简体中文
-    options.add_argument('--user-agent=' + generate_user_agent())
+    options.add_argument('--user-agent={}'.format(generate_user_agent()))
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
@@ -83,7 +83,7 @@ def main():
         driver.save_screenshot('./jiangsu_picture.png')  # 全屏截图
         im = Image.open('./jiangsu_picture.png')
         im = im.crop((left, top, right, bottom))
-        im.save('/home/kerwin/Dev/image/' + str(i) + '.png')
+        im.save('/home/wk/Dev/image/' + str(i) + '.png')
         driver.find_element_by_xpath('//*[@class="yidun_refresh"]').click()
         time.sleep(3)
 
