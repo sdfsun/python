@@ -6,21 +6,22 @@
 # @Last Modified time: 2021-08-31 19:09:07
 # @Description: 青岛
 
-from selenium.common.exceptions import NoSuchElementException
+import os
+import re
+import time
+
+import muggle_ocr
+import requests
+from PIL import Image
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
 from user_agent import generate_user_agent
-import requests
-import time
-import re
-import os
-from PIL import Image
-import muggle_ocr
 
 
 def getDriver():

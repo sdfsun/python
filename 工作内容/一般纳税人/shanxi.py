@@ -5,22 +5,17 @@
 # @Description: 山西  滑动验证码 未完成
 
 
-from selenium.common.exceptions import NoSuchElementException
-from selenium import webdriver
-from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.select import Select
-from user_agent import generate_user_agent
-import time
-from PIL import Image
 import base64
-import numpy as np
-import cv2
-from get import get
-import random
+import time
+
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from user_agent import generate_user_agent
+
+from shanxi_yanzh import get
 
 
 def getDriver():
@@ -29,7 +24,7 @@ def getDriver():
     options.add_argument("--disable-gpu")
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_argument("--disable-blink-features=AutomationControlled")
-    # options.add_argument('--headless')  # 无界面形式
+    options.add_argument('--headless')  # 无界面形式
     options.add_argument('--no-sandbox')  # 取消沙盒模式
     options.add_argument('--disable-setuid-sandbox')
     # options.add_experimental_option('useAutomationExtension', False)

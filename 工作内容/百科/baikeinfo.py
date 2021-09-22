@@ -1,18 +1,18 @@
-#! user/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
-# @Date: 2021-08-09 20:39:37
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-20 10:18:30
-# @FilePath: /python/工作内容/baike/baikeinfo.py
-# @Description: 百度百科
+# @Date: 2021-09-10 17:41:09
+# @Description: 百度百科查询
 
-import requests
 from urllib.parse import quote
+
+import pysnooper
+import requests
 from lxml import etree
 from user_agent import generate_user_agent
 
 
+@pysnooper.snoop()
 def query(cont):
     url = 'https://baike.baidu.com/item/' + quote(cont)
 

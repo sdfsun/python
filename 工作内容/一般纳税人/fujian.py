@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-27 17:46:09

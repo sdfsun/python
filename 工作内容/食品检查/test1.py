@@ -1,11 +1,13 @@
 # encoding=utf-8
 # 某一公司的合格信息
 
-from selenium import webdriver
-import time
-from selenium.webdriver.support.ui import Select
-import re
 import random
+import re
+import time
+
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from user_agent import generate_user_agent
 
 
 def getDriver():
@@ -22,8 +24,7 @@ def getDriver():
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument('--incognito')  # 启动进入隐身模式
     options.add_argument('--lang=zh-CN')  # 设置语言为简体中文
-    options.add_argument(
-        '--user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36')
+    options.add_argument('--user-agent={}'.format(generate_user_agent()))
     options.add_argument('--hide-scrollbars')  # 隐藏滚动条, 应对一些特殊页面
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
@@ -31,13 +32,11 @@ def getDriver():
     driver = webdriver.Chrome(options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
-    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": """
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": """
             Object.defineProperty(navigator, 'webdriver', {
                 get: () => undefined
             })
-        """
-    })
+        """})
 
     return driver
 
@@ -54,9 +53,7 @@ def left_info():
     }
     time.sleep(5)
     for i in range(1, 11):  # 某一页中某公司的食品抽查记录，一页差不多有十条
-        food_name = driver.find_element_by_xpath(
-            '//*[@id="main"]/div[3]/div[2]/div[1]/div/div[2]/table/tbody/tr[' + str(i) + ']/td[1]').get_attribute(
-            'outerHTML')
+        food_name = driver.find_element_by_xpath('//*[@id="main"]/div[3]/div[2]/div[1]/div/div[2]/table/tbody/tr[' + str(i) + ']/td[1]').get_attribute('outerHTML')
         # print(food_name)
         gongsi = re.findall(r'【.*?】', food_name)
         gongsi = str(str(str(gongsi).split('【')).split('】')).replace('"', '').replace("'", "").replace(" ", '').split(',')[1]
@@ -72,8 +69,7 @@ def left_info():
             time.sleep(random.randint(1, 2))
             driver1 = getDriver()
             driver1.get(food_url)
-            jiancha_info = driver1.find_element_by_xpath(
-                '//*[@id="main"]/div[2]/div[2]/div[3]/div/div[1]').get_attribute('outerHTML')
+            jiancha_info = driver1.find_element_by_xpath('//*[@id="main"]/div[2]/div[2]/div[3]/div/div[1]').get_attribute('outerHTML')
             jiancha_info = re.sub(u"\\<.*?\\>", "", jiancha_info)
             print(jiancha_info)
             driver1.quit()
@@ -108,14 +104,12 @@ if __name__ == '__main__':
     except:
         print('结束！')
     driver.quit()
-
 '''
 
 //*[@id="pager"]/div/div/ul/li[3]/a'
 //*[@id="pager"]/div/div/ul/li[6]/a
 
 '''
-
 '''
 
 

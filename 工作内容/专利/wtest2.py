@@ -60,7 +60,7 @@ if __name__ == '__main__':
     driver.get(url)
     time.sleep(2)
     driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18410065868')
-    time.sleep(20)
+    driver.find_element_by_id('password').send_keys('2726kerwin')
     driver.find_element_by_xpath('//*[@id="login"]').click()
     time.sleep(2)
     driver.find_element_by_xpath('//*[@id="tablepage"]/a').click()

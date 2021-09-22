@@ -2,12 +2,13 @@
 # 最多可访问200页 即1000条记录
 # 可通过分类缩小范围以获取更多的数据      改变检索式就行
 
-from selenium import webdriver
-import requests
-import time
 import re
-from selenium.webdriver.support.ui import WebDriverWait
+import time
+
+import requests
+from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def getDriver():
@@ -40,18 +41,14 @@ def getDriver():
     options.add_argument(
         '--user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36')
     options.add_argument('--hide-scrollbars')  # 隐藏滚动条, 应对一些特殊页面
-    options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
-    options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
-
-    driver = webdriver.Chrome(options=options)
-    driver.execute_cdp_cmd("Network.enable", {})
-    driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
-    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": """
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined
-            })
-        """
+    options.add_argument('--disable-#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# @Author: 王琨
+# @Date: 2021-08-09 20:39:37
+# @LastEditors: 王琨
+# @LastEditTime: 2021-08-20 10:18:30
+# @FilePath: /python/工作内容/baike/baikeinfo.py
+# @Description: 百度百科
     })
 
     return driver
@@ -65,7 +62,7 @@ if __name__ == '__main__':
     driver.get(url)
     time.sleep(2)
     driver.find_element_by_xpath('//*[@id="loginname"]').send_keys('18410065868')  # 登录页  需要账号密码
-    time.sleep(10)
+    driver.find_element_by_id('password').send_keys('2726kerwin')
     driver.find_element_by_xpath('//*[@id="login"]').click()
     time.sleep(2)
     driver.find_element_by_xpath('//*[@id="tablepage"]/a').click()
@@ -86,6 +83,7 @@ if __name__ == '__main__':
     driver.find_element_by_xpath('//*[@id="TxtSearch"]').send_keys("((@华为技术有限公司/PA))*(1/PT+8/PT)*(1/LG)")
     time.sleep(1)
     driver.find_element_by_xpath('//*[@id="searchbtn2"]').click()
+    time.sleep(3)
     flag = 0
     pages = 0
     while True:
@@ -94,9 +92,9 @@ if __name__ == '__main__':
                 # WebDriverWait(driver, 100).until(lambda first: first.find_element_by_xpath('//*[@id="listcontainer"]/div['+str(i)+']'))
                 info = driver.find_element_by_xpath('//*[@id="listcontainer"]/div[' + str(i) + ']').get_attribute(
                     'innerHTML').replace('\u2011', '')
-            except:
+            except Exception as e:
                 driver.quit()
-                print('结束！！')
+                print(e)
                 exit(0)
             info1 = re.sub(u"</div>", "*", info)
             info1 = re.sub(u"</p>", ",", info1)

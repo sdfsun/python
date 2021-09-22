@@ -7,21 +7,14 @@
 # @FilePath: /python/工作内容/一般纳税人/dalian.py
 # @Description: 大连 数字识别验证码
 
-from selenium.common.exceptions import NoSuchElementException
+import time
+
+import muggle_ocr
+from PIL import Image
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.select import Select
 from user_agent import generate_user_agent
-import requests
-import time
-import re
-import os
-from PIL import Image
-import muggle_ocr
 
 
 def getDriver():

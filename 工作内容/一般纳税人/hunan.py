@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date:   2021-08-31 10:29:45
@@ -6,21 +6,22 @@
 # @Last Modified time: 2021-08-31 11:42:32
 # @Description: 湖南 数字字母验证码
 
-from selenium.common.exceptions import NoSuchElementException
+import os
+import re
+import time
+
+import muggle_ocr
+import requests
+from PIL import Image
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
 from user_agent import generate_user_agent
-import requests
-import time
-import re
-import os
-from PIL import Image
-import muggle_ocr
 
 
 def getDriver():
@@ -46,7 +47,7 @@ def getDriver():
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
-        "source": """
+        "source": """low
         Object.defineProperty(navigator, 'webdriver', {
             get: () => undefined
             })
@@ -54,6 +55,22 @@ def getDriver():
     })
 
     return browser
+
+
+def two_value():
+    img = Image.open('./验证码图片/hunan_identifier.png')
+    im = img.convert('L')
+    low = 80
+    top = 190
+    table = []
+
+    for j in range(256):
+        if j < low or j > top:
+            table.append(1)
+        else:
+            table.append(0)
+    bim = im.point(table, '1')
+    bim.save('./验证码图片/hunan_identifier.png')
 
 
 def main(identifier):

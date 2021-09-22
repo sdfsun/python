@@ -8,15 +8,14 @@
 # @Description: pyppeteer
 
 import asyncio
-from pyppeteer import errors
-from pyppeteer import launch
-from user_agent import generate_user_agent
+import csv
+import time
+
 import nest_asyncio
 import requests
-import time
-import csv
 from lxml import etree
-
+from pyppeteer import errors, launch
+from user_agent import generate_user_agent
 
 # from pyppeteer_stealth import stealth
 
@@ -51,7 +50,7 @@ async def run():
             continue
         else:
             proxies = ip
-        browser = await launch(headless=False, args=['--proxy-server={}'.format(ip), '--disable-infobars', '--no-sandbox'], userDataDir='../Temporary')
+        browser = await launch(headless=False, args=['--proxy-server={}'.format(ip), '--disable-infobars', '--no-sandbox'], userDataDir='./Temporary')
         page1 = await browser.newPage()
         # await stealth(page)
         # await page.setViewport({'width': width, 'height': height})

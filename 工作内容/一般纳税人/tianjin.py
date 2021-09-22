@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-26 10:59:39
@@ -7,21 +7,13 @@
 # @FilePath: /python/工作内容/一般纳税人/tianjin.py
 # @Description: 天津一般纳税人查询
 
-from selenium.common.exceptions import NoSuchElementException
+import time
+
+import muggle_ocr
+from PIL import Image
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.select import Select
 from user_agent import generate_user_agent
-import requests
-import time
-import re
-import os
-from PIL import Image
-import muggle_ocr
 
 
 def getDriver():
@@ -36,8 +28,7 @@ def getDriver():
     # options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--incognito')  # 启动进入隐身模式
     options.add_argument('--lang=zh-CN')  # 设置语言为简体中文
-    options.add_argument(
-        '--user-agent=' + generate_user_agent())
+    options.add_argument('--user-agent=' + generate_user_agent())
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
@@ -46,13 +37,11 @@ def getDriver():
     browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
-    browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
-        "source": """
+    browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {"source": """
         Object.defineProperty(navigator, 'webdriver', {
             get: () => undefined
             })
-        """
-    })
+        """})
     # with open('stealth.min.js') as f:
     #     js = f.read()
     # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -110,8 +99,7 @@ def main():
     time.sleep(3)
 
     for i in range(1, 21):
-        info = driver.find_element_by_xpath('//td[@class="tdb"]//tbody[2]/tr[' + str(i) + ']').get_attribute(
-            'textContent')
+        info = driver.find_element_by_xpath('//td[@class="tdb"]//tbody[2]/tr[' + str(i) + ']').get_attribute('textContent')
         print(info)
     # try:
     #     info = driver.find_element_by_xpath('//*[@id="dataTable"]/tbody/tr').get_attribute('textContent')
@@ -127,4 +115,5 @@ def main():
     driver.quit()
 
 
-main()
+if __name__ == '__main__':
+    main()
