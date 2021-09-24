@@ -1,26 +1,20 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
-# @Date:   2021-08-31 13:50:37
-# @Last Modified by:   王琨
-# @Last Modified time: 2021-08-31 14:18:06
-# @Description: 新疆
+# @Date: 2021-09-23 10:17:29
+# @LastEditors: 王琨
+# @LastEditTime: 2021-09-23 10:20:52
+# @FilePath: \python\工作内容\一般纳税人\yunnan.py
+# @Descripttion: 云南省 数字验证码
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.select import Select
 from user_agent import generate_user_agent
-import requests
 import time
-import re
-import os
 from PIL import Image
 import muggle_ocr
+import pysnooper
 
 
 def getDriver():
@@ -56,58 +50,72 @@ def getDriver():
     return browser
 
 
+@pysnooper.snoop()
 def main(identifier):
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["pageLoadStrategy"] = "none"
-    url = 'https://etax.xinjiang.chinatax.gov.cn/wszx-web/apps/views/yhscx/ybnsrzgcx.html?code=ggcx&id=250'
+    url = 'https://etax.yunnan.chinatax.gov.cn/zjgfdacx/sscx/ybnsrzgcx/ybnsrzgcx.html'
     driver = getDriver()
     driver.get(url)
-    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@id="nsrsbh1$text"]'))
+    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//div[@class="text-left"]/input'))
 
-    driver.find_element_by_xpath('//*[@id="nsrsbh1$text"]').send_keys(identifier)
+    driver.find_element_by_xpath('//div[@class="text-left"]/input').send_keys(identifier)
+
+    # 定位验证码在iframe中的坐标
+    element = driver.find_element_by_xpath('//*[@id="codeImage"]')
+    print(element.location)
+    print(element.size)
+    # 真实坐标需要加上iframe的坐标
+    left = element.location['x'] + 284
+    top = element.location['y'] + 39
+    right = element.location['x'] + element.size['width'] + 305
+    bottom = element.location['y'] + element.size['height'] + 46
 
     time.sleep(2)
     while True:
         # 截取验证码图片
-        driver.save_screenshot('./验证码图片/xinjiang_picture.png')  # 全屏截图
-        # 定位验证码在iframe中的坐标
-        element = driver.find_element_by_id('yzmImg')
-        print(element.location)
-        print(element.size)
-        # 真实坐标需要加上iframe的坐标
-        left = element.location['x']
-        top = element.location['y']
-        right = element.location['x'] + element.size['width']
-        bottom = element.location['y'] + element.size['height']
-        im = Image.open('./验证码图片/xinjiang_picture.png')
+        driver.save_screenshot('./验证码图片/yunnan_picture.png')  # 全屏截图
+
+        im = Image.open('./验证码图片/yunnan_picture.png')
         im = im.crop((left, top, right, bottom))
-        im.save('./验证码图片/xinjiang_identifier.png')
+        im.save('./验证码图片/yunnan_identifier.png')
 
         # 识别验证码
-        with open('./验证码图片/xinjiang_identifier.png', 'rb') as f:
+        with open('./验证码图片/yunnan_identifier.png', 'rb') as f:
             image = f.read()
         sdk = muggle_ocr.SDK(model_type=muggle_ocr.ModelType.Captcha)
+        
         text = sdk.predict(image_bytes=image)
         print(text)
         # 输入验证码
-        driver.find_element_by_xpath('//*[@id="verifyCode$text"]').send_keys(text)
+        driver.find_element_by_xpath('//*[@id="check_code"]').send_keys(text)
         time.sleep(1)
         # 点击“查询”
-        driver.find_element_by_xpath('//*[@id="stepnext"]/span').click()
+        driver.find_element_by_xpath('//*[@id="queryBtn"]').click()
         time.sleep(3)
-        info = driver.find_element_by_xpath('//*[@id="mini-grid-table-bodylshnsrxx"]/tbody').get_attribute('textContent')
-        if not info:
-            driver.find_element_by_xpath('//span[contains(text(), "确定")]').click()
-            driver.find_element_by_xpath('//*[@id="verifyCode$text"]').clear()
-            driver.find_element_by_xpath('//*[@id="yzmImg"]').click()
+        try:
+            count = 1
+            while True:
+                try:
+                    info = driver.find_element_by_xpath('//*[@id="content"]/tr[' + str(count) + ']').get_attribute('textContent')
+                    print(info)
+                    count += 1
+                except NoSuchElementException:
+                    break
+        except NoSuchElementException:
+            mes = driver.find_element_by_xpath('//*[@id="content"]').get_attribute('textContent')
+            if mes:
+                driver.find_element_by_xpath('//*[contains(text(), "确定")]').click()
+            driver.find_element_by_xpath('//*[@id="check_code"]').clear()  # 清除输入的验证码
+            driver.find_element_by_xpath('//*[@id="codeImage"]').click()  # 点击刷新验证码
             time.sleep(2)
             continue
-        print(info)
+
         break
 
     driver.quit()
 
 
 if __name__ == '__main__':
-    ID = '91650000299937622W'
+    ID = '9153000021652214XX'
     main(ID)

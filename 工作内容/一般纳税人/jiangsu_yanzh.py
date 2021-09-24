@@ -6,6 +6,7 @@
 
 # 请求服务器上的蓝图进行测试
 import requests
+import pysnooper
 
 
 def send_post_image_nsfw(img1_path, url):
@@ -20,8 +21,9 @@ def send_post_image_nsfw(img1_path, url):
     return html
 
 
+@pysnooper.snoop()
 def get():
-    url = 'http://192.168.3.71:8986/yidun'
+    url = 'http://192.168.3.77:8991/yidun'
     path = './验证码图片/jiangsu_identifier.jpg'
     html = send_post_image_nsfw(path, url)
     return html

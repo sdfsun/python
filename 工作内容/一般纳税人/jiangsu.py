@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-09-01 16:32:21
@@ -41,7 +41,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
     # options.add_argument('--proxy-server={}'.format(proxy(headers)))
-    browser = webdriver.Chrome(options=options)
+    browser = webdriver.Chrome(options=options, executable_path='C:/Users/18410/AppData/Local/Google/Chrome/Application/chromedriver.exe')
     browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
@@ -56,7 +56,6 @@ def getDriver():
     return browser
 
 
-@pysnooper.snoop()
 def main(identifier):
     # desired_capabilities = DesiredCapabilities.CHROME
     # desired_capabilities["pageLoadStrategy"] = "none"
@@ -75,36 +74,33 @@ def main(identifier):
     element = driver.find_element_by_xpath('//*[@id="captcha_div"]/div')
     ele_x = element.location['x'] + ifr_x
     ele_y = element.location['y'] + ifr_y
-    action = ActionChains(driver)
-    ActionChains(driver).move_by_offset(ele_x, ele_y).perform()
-    time.sleep(2)
+    for x in range(10):
+        element.click()
+        time.sleep(2)
 
-    pic = driver.find_element_by_xpath('//*[@id="captcha_div"]/div/div[1]/div/div[1]/img[1]')
-    pic_x = pic.location['x']
-    pic_y = pic.location['y']
-    pic_url = pic.get_attribute('src')
-    res = requests.get(pic_url)
-    with open('./验证码图片/jiangsu_identifier.jpg', 'wb') as f:
-        f.write(res.content)
-    dic = get()
-    dic = eval(dic)
-    character = driver.find_element_by_xpath('//*[@id="captcha_div"]/div/div[2]/div[3]/div/span').get_attribute('textContent')
-    word = eval(character)
-
-    x = dic['data'][word[0]]['x'] + pic_x + ifr_x - ele_x
-    y = dic['data'][word[0]]['y'] + pic_y + ifr_y - ele_y
-    action.move_by_offset(x, y).click().perform()
-    time.sleep(1)
-    for i in range(3):
-        # x = dic['data'][word[i]]['x'] + pic_x + ifr_x - ele_x
-        # y = dic['data'][word[i]]['y'] + pic_y + ifr_y - ele_y
-        x = dic['data'][word[i]]['x'] - dic['data'][word[i - 1]]['x']
-        y = dic['data'][word[i]]['y'] - dic['data'][word[i - 1]]['y']
-        action.move_by_offset(x, y).click().perform()
-        # ActionChains(driver).move_by_offset(-x, -y).perform()
+        pic = driver.find_element_by_xpath('//*[@id="captcha_div"]/div/div[1]/div/div[1]/img[1]')
+        pic_x = pic.location['x']
+        pic_y = pic.location['y']
+        pic_url = pic.get_attribute('src')
+        res = requests.get(pic_url)
+        with open('./验证码图片/jiangsu_identifier.jpg', 'wb') as f:
+            f.write(res.content)
+        dic = get()
+        dic = eval(dic)
+        character = driver.find_element_by_xpath('//*[@id="captcha_div"]/div/div[2]/div[3]/div/span').get_attribute('textContent')
+        word = eval(character)
+        element.click()
+        img = driver.find_element_by_xpath('//img[@class="yidun_bg-img"]')
         action = ActionChains(driver)
-        time.sleep(1)
-    time.sleep(5)
+        for i in range(3):
+            x = dic['data'][word[i]]['x']
+            y = dic['data'][word[i]]['y']
+            action.move_to_element_with_offset(img, x, y).click()
+
+            action.perform()
+            action = ActionChains(driver)
+            time.sleep(1)
+    time.sleep(1)
     driver.quit()
 
 
