@@ -1,10 +1,7 @@
-# /usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-09-01 16:32:21
-# @LastEditors: 王琨
-# @LastEditTime: 2021-09-01 16:32:22
-# @FilePath: /python/工作内容/一般纳税人/jiangsu.py
 # @Description: 江苏
 
 import base64
@@ -21,6 +18,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from user_agent import generate_user_agent
 
 from jiangsu_yanzh import get
+import pyautogui
 
 
 def getDriver():
@@ -91,15 +89,15 @@ def main(identifier):
         word = eval(character)
         element.click()
         img = driver.find_element_by_xpath('//img[@class="yidun_bg-img"]')
-        action = ActionChains(driver)
+        # action = ActionChains(driver)
         for i in range(3):
-            x = dic['data'][word[i]]['x']
-            y = dic['data'][word[i]]['y']
-            action.move_to_element_with_offset(img, x, y).click()
-
-            action.perform()
-            action = ActionChains(driver)
-            time.sleep(1)
+            x = dic['data'][word[i]]['x'] + ifr_x + pic_x
+            y = dic['data'][word[i]]['y'] + ifr_y + pic_y
+            # action.move_to_element_with_offset(img, x, y).click()
+            pyautogui.moveTo(x, y, duration=2, tween=pyautogui.easeInOutQuad)
+            # action.perform()
+            # action = ActionChains(driver)
+            # time.sleep(1)
     time.sleep(1)
     driver.quit()
 

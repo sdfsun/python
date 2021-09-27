@@ -7,14 +7,13 @@
 # @Description:
 
 
-import requests
-from user_agent import generate_user_agent
-headers = {
-        'Connection': 'close',
-        'user-agent': generate_user_agent()
-    }
-for i in range(10000):
-    res = requests.get('https://etax.ningbo.chinatax.gov.cn/yhs-web/api/yhsyzm/get?1631008417224', headers=headers, )
-    print(res.status_code)
-    with open('./' + str(i) + '.jpg', 'wb') as f:
-        f.write(res.content)
+def isPalindrome(self, x: int) -> bool:
+    a = 0
+    b = x
+    while x != 0:
+        a = a * 10 + b % 10
+        b = b // 10
+    if a == x:
+        return True
+    else:
+        return False

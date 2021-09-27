@@ -1,4 +1,4 @@
-#! user/bin/env python
+#!user/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-09 20:39:37
@@ -13,7 +13,7 @@ import time
 from datetime import datetime
 
 import requests
-from fake_useragent import UserAgent
+from user_agent import generate_user_agent
 from lxml import etree
 
 url_dict_gs = {}
@@ -23,10 +23,8 @@ url_dict_file_gg = {}
 
 # 进入高新技术企业认定工作网
 first_url = 'http://www.innocom.gov.cn/'
-ua = UserAgent()
-agent = ua.random
 headers = {
-    'User-Agent': agent
+    'User-Agent': generate_user_agent()
 }
 
 response = requests.get(url=first_url, headers=headers)
@@ -65,7 +63,8 @@ for url in url_dict_gs:
                 count += 1
         try:
             next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(), ' > ')]/@href')
-        except:
+        except Exception as e:
+            print(e)
             break
         next_page = requests.get(url='url' + next_page_url, headers=headers)
         city_page_html = etree.HTML(next_page.content.decode('utf-8'))
@@ -84,19 +83,20 @@ for url in url_dict_gg:
             url_dict_file_gg[name] = co_list_url
             count += 1
         try:
-            next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(),' > ')]/@href')
-        except:
+            next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(), " > ")]/@href')
+        except Exception as e:
+            print(e)
             break
         next_page = requests.get(url='url' + next_page_url, headers=headers)
         city_page_html = etree.HTML(next_page.content.decode('utf-8'))
 # print(url_dict_file_gs, url_dict_file_gg)
 
-with open('gs_url.csv', 'w', newline='', encoding='utf-8') as f:
+with open('./gs_url.csv', 'w', newline='', encoding='utf-8') as f:
     f_csv = csv.writer(f)
     for name in url_dict_file_gs:
         f_csv.writerow([name, url_dict_file_gs[name]])
 
-with open('gg_url.csv', 'w', newline='', encoding='utf-8')as s:
+with open('./gg_url.csv', 'w', newline='', encoding='utf-8')as s:
     s_csv = csv.writer(s)
     for name in url_dict_file_gg:
         s_csv.writerow([name, url_dict_file_gg[name]])

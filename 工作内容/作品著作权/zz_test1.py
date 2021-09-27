@@ -1,4 +1,4 @@
-#encoding=utf-8
+# encoding=utf-8
 
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
@@ -40,7 +40,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
 
-    driver = webdriver.Chrome(executable_path='F:\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(executable_path='C:/Users/18410/AppData/Local/Google/Chrome/Application/chromedriver.exe', options=options)
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -52,6 +52,7 @@ def getDriver():
     })
 
     return driver
+
 
 def getProxy():
     while True:
@@ -70,28 +71,29 @@ def getProxy():
         else:
             time.sleep(20)
 
+
 if __name__ == '__main__':
     url = "http://qgzpdj.ccopyright.com.cn/registrationPublicity.html"
     driver = getDriver()
     driver.get(url)
     time.sleep(1)
-    #下拉框
-    select=driver.find_element_by_xpath('//*[@id="searchType"]')
+    # 下拉框
+    select = driver.find_element_by_xpath('//*[@id="searchType"]')
     Select(select).select_by_value('2')
     time.sleep(1)
     driver.find_element_by_xpath('//*[@id="searchCont"]').send_keys('华为技术有限公司')
     driver.find_element_by_xpath('//*[@id="j-popup"]').click()
     time.sleep(30)
     while True:
-        #得到每一栏的著作信息
-        for i in range(1,11):
+        # 得到每一栏的著作信息
+        for i in range(1, 11):
             try:
-                texts=driver.find_element_by_xpath('//*[@id="app"]/div[2]/div[2]/div/div/div/table['+str(i)+']/tbody').get_attribute('innerHTML')
-                texts1=re.sub(u'</tr>',',',texts)
-                texts2=re.sub(u'<.*?>','',texts1)
+                texts = driver.find_element_by_xpath('//*[@id="app"]/div[2]/div[2]/div/div/div/table[' + str(i) + ']/tbody').get_attribute('innerHTML')
+                texts1 = re.sub(u'</tr>', ',', texts)
+                texts2 = re.sub(u'<.*?>', '', texts1)
                 print(texts2)
-            except:
-                print(1)
+            except Exception as e:
+                print(e)
                 driver.quit()
                 exit(0)
         time.sleep(3)

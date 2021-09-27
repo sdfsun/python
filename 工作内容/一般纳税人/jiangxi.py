@@ -1,10 +1,7 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-27 17:09:41
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-27 17:09:41
-# @FilePath: /python/工作内容/一般纳税人/jiangxi.py
 # @Description: 江西 数字识别验证码
 
 from selenium.common.exceptions import UnexpectedAlertPresentException

@@ -1,11 +1,8 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
-# @Date: 2021-08-26 10:04:29
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-26 10:04:44
-# @FilePath: /python/工作内容/一般纳税人/beijing.py
-# @Description: 北京一般纳税人查询 可以直接拼接URL访问
+# @Date: 2021-09-15 00:42:06
+# @Descripttion: 北京一般纳税人查询 可以直接拼接URL访问
 
 import requests
 from user_agent import generate_user_agent

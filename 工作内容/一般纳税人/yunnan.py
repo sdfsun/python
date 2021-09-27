@@ -1,9 +1,7 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-09-23 10:17:29
-# @LastEditors: 王琨
-# @LastEditTime: 2021-09-23 10:20:52
-# @FilePath: \python\工作内容\一般纳税人\yunnan.py
 # @Descripttion: 云南省 数字验证码
 
 from selenium.common.exceptions import NoSuchElementException
@@ -14,7 +12,6 @@ from user_agent import generate_user_agent
 import time
 from PIL import Image
 import muggle_ocr
-import pysnooper
 
 
 def getDriver():
@@ -50,14 +47,13 @@ def getDriver():
     return browser
 
 
-@pysnooper.snoop()
 def main(identifier):
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["pageLoadStrategy"] = "none"
     url = 'https://etax.yunnan.chinatax.gov.cn/zjgfdacx/sscx/ybnsrzgcx/ybnsrzgcx.html'
     driver = getDriver()
     driver.get(url)
-    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//div[@class="text-left"]/input'))
+    WebDriverWait(driver, 20).until(lambda x: x.find_element_by_xpath('//div[@class="text-left"]/input'))
 
     driver.find_element_by_xpath('//div[@class="text-left"]/input').send_keys(identifier)
 
