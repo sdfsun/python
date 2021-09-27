@@ -16,7 +16,7 @@ for i in range(1):
     params = (
         ('time', str(int(time.time())*1000)),
     )
-    url = 'https://etax.fujian.chinatax.gov.cn/tycx-cjpt-web/cxptGz/builderCaptcha.do?t=1630286668045'
+    url = 'https://wbjr.chongqing.chinatax.gov.cn/PortalWeb/pages/sscx/cx_nsrzg.html'
     res = requests.get(url=url, headers=headers, params=params)
     print(res.status_code)
     name = str(i) + '.jpg'
