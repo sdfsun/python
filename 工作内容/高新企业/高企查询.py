@@ -1,10 +1,6 @@
-#!user/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-09 20:39:37
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-20 10:20:43
-# @FilePath: /python/工作内容/高新企业/高企查询.py
 # @Description: 高新技术企业认定管理工作网
 
 import csv
@@ -62,9 +58,9 @@ for url in url_dict_gs:
                 url_dict_file_gs[name] = co_list_url
                 count += 1
         try:
-            next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(), ' > ')]/@href')
+            next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(), " > ")]/@href')
         except Exception as e:
-            print(e)
+            print('公示：{}'.format(e))
             break
         next_page = requests.get(url='url' + next_page_url, headers=headers)
         city_page_html = etree.HTML(next_page.content.decode('utf-8'))
@@ -85,7 +81,7 @@ for url in url_dict_gg:
         try:
             next_page_url = city_page_html.xpath('//span[@class="arrow"]/a[contains(text(), " > ")]/@href')
         except Exception as e:
-            print(e)
+            print('公告{}'.format(e))
             break
         next_page = requests.get(url='url' + next_page_url, headers=headers)
         city_page_html = etree.HTML(next_page.content.decode('utf-8'))

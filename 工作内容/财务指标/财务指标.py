@@ -1,10 +1,6 @@
-#! user/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-09 20:39:37
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-20 10:19:50
-# @FilePath: /python/工作内容/财务指标/财务指标.py
 # @Description: 新浪财经网
 
 import csv

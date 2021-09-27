@@ -41,14 +41,18 @@ def getDriver():
     options.add_argument(
         '--user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36')
     options.add_argument('--hide-scrollbars')  # 隐藏滚动条, 应对一些特殊页面
-    options.add_argument('--disable-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @Author: 王琨
-# @Date: 2021-08-09 20:39:37
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-20 10:18:30
-# @FilePath: /python/工作内容/baike/baikeinfo.py
-# @Description: 百度百科
+    options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
+    options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
+
+    driver = webdriver.Chrome(options=options)
+    driver.execute_cdp_cmd("Network.enable", {})
+    driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        "source": """
+                Object.defineProperty(navigator, 'webdriver', {
+                    get: () => undefined
+                })
+            """
     })
 
     return driver

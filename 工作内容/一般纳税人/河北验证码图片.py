@@ -1,10 +1,6 @@
-#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author: 王琨
 # @Date: 2021-08-26 14:08:47
-# @LastEditors: 王琨
-# @LastEditTime: 2021-08-26 14:08:47
-# @FilePath: /python/工作内容/一般纳税人/河北验证码.py
 # @Description: 
 
 import requests

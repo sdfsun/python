@@ -2,10 +2,6 @@
 # @Author: 王琨
 # @Email: 18410065868@163.com
 # @Date: 2021-06-15 09:31:34
-# @Last Modified by: 王琨
-# @Last Modified time: 2021-06-23 16:46:03
-# @File Path: D:\Dev\pythonProject\高企公示文件下载.py
-# @Project Name: pythonProject
 # @Description:
 
 import csv
