@@ -52,6 +52,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\工作内容\商标\img.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\工作内容\商标\info.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
