@@ -37,7 +37,7 @@ def proxy():
 async def run():
     count = '华为技术有限公司'  # 初始申请人
     # browser = await launch(headless=False, args=['--proxy-server={}'.format(ip), '--disable-infobars', '--no-sandbox'], userDataDir='./Temporary')
-    browser = await launch(headless=False, args=['--disable-infobars', '--no-sandbox'], userDataDir='./Temporary')
+    browser = await launch(headless=False, args=['--disable-infobars', '--no-sandbox'], userDataDir='D:/Temporary')
     page1 = await browser.newPage()
     # await stealth(page)
     # await page.setViewport({'width': width, 'height': height})
@@ -80,7 +80,7 @@ async def run():
                         f_csv = csv.writer(f)
                         f_csv.writerow(info)
             await page3.click('#mGrid_listGrid_paginator_0 > ul > li.nextPage > a')  # 点击下一页
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
 
     except Exception as e:
         print(e)

@@ -32,7 +32,7 @@ def getDriver():
     # options.add_argument('--headless')  # 无界面形式
     options.add_argument('--no-sandbox')  # 取消沙盒模式
     # options.add_argument('-kiosk')    # 全屏
-    options.add_argument("--window-size=1920,900")  # 指定浏览器分辨率
+    # options.add_argument("--window-size=1920,900")  # 指定浏览器分辨率
     # options.set_window_size(480, 600)  # 窗口大小变化
     options.add_argument('--disable-setuid-sandbox')
     options.add_experimental_option("useAutomationExtension", False)
@@ -44,7 +44,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')  # 禁用 Flash 的捆绑 PPAPI 版本
     options.add_argument('--mute-audio')  # 将发送到音频设备的音频静音，使其在自动测试期间听不到
 
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=options, executable_path='C:/Program Files/Google/Chrome/Application/chromedriver.exe')
     driver.execute_cdp_cmd("Network.enable", {})
     driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -69,6 +69,8 @@ if __name__ == '__main__':
     driver.find_element_by_id('password').send_keys('2726kerwin')
     driver.find_element_by_xpath('//*[@id="login"]').click()
     time.sleep(2)
+    import ipdb
+    ipdb.set_trace()
     driver.find_element_by_xpath('//*[@id="tablepage"]/a').click()
     time.sleep(1)
     '''

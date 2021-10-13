@@ -4,6 +4,7 @@
 # @Descripttion: 商标信息查询
 
 import time
+import pysnooper
 
 import requests
 from selenium import webdriver
@@ -52,7 +53,7 @@ def getDriver(headers):
     browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
         "source": """
         Object.defineProperty(navigator, 'webdriver', {
-            get: () => undefined
+            get: () => false
             })
         """
     })
@@ -76,35 +77,50 @@ def main():
     }
     driver = getDriver(headers)
     driver.get(url)
-    time.sleep(5)
 
+    # 等待网页加载
+    WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//div[@class="bscont2 bscont"]/div[@class="bacontinner"]/a'))
     move1 = driver.find_element_by_xpath('//div[@class="bscont2 bscont"]/div[@class="bacontinner"]/a')
-    ActionChains(driver).move_to_element(move1).click(move1).perform()
+    ActionChains(driver).move_to_element(move1).click().perform()
     handles = driver.window_handles
     driver.switch_to.window(handles[-1])
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//div[@class="TRS_Editor"]//img')))
 
-    # Click"我接受"
+    # 点击"我接受"
     move2 = driver.find_element_by_xpath('//div[@class="TRS_Editor"]//img')
-    ActionChains(driver).move_to_element(move2).click(move2).perform()
+    ActionChains(driver).move_to_element(move2).click().perform()
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//p[contains(text(),"商标综合查询")]')))
 
-    # Click on "商标综合查询"
+    # 点击"商标综合查询"
     move3 = driver.find_element_by_xpath('//p[contains(text(),"商标综合查询")]')
-    ActionChains(driver).move_to_element(move3).click(move3).perform()
+    # ActionChains(driver).move_to_element(move3).click().perform()
+    move3.click()
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="submitForm"]//tbody/tr[4]//input')))
 
-    # Positioning input box and input value
-    element = driver.find_element_by_xpath('//*[@id="submitForm"]//tbody/tr[4]//input')
-    ActionChains(driver).move_to_element(element).click(element).send_keys(value).perform()
+    # 定位输入框和输入值
+    try:
+        element = driver.find_element_by_xpath('//*[@id="submitForm"]//tbody/tr[4]//input')
+        # ActionChains(driver).move_to_element(element).click().send_keys(value).perform()
+        element.click()
+        time.sleep(1)
+        element.send_keys(value)
+    except Exception as e:
+        print(e)
+        time.sleep(15)
 
-    # Click "查询"
-    move4 = driver.find_element_by_xpath('//div[@class="bottonbox"]/input[2]')
-    ActionChains(driver).move_to_element(move4).click(move4).perform()
-    handles = driver.window_handles
-    driver.switch_to.window(handles[-1])
-    result = driver.page_source
-    print(result)
+    # 点击"查询"
+    try:
+        move4 = driver.find_element_by_xpath('//div[@class="bottonbox"]/input[2]')
+        ActionChains(driver).move_to_element_with_offset(move4, 70, 25).click().perform()
+        time.sleep(3)
+        handles = driver.window_handles
+        driver.switch_to.window(handles[-1])
+        WebDriverWait(driver, 100).until(lambda x: x.find_element_by_xpath(''))
+        result = driver.page_source
+        print(result)
+    except Exception as e:
+        print(e)
+        time.sleep(15)
 
 
 if __name__ == '__main__':
