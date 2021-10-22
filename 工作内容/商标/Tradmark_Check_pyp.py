@@ -10,33 +10,27 @@ import time
 import nest_asyncio
 import requests
 from lxml import etree
-from pyppeteer import errors, launch
+from pyppeteer import launch
 from user_agent import generate_user_agent
 
 nest_asyncio.apply()
 
 # width = 1920w
 # height = 1080
+List = []
 
 
 # 获取代理IP
-def proxy():
-    headers = {'User-Agent': generate_user_agent()}
-    while True:
-        proxy_url = 'http://17610040106.v4.dailiyun.com/query.txt?key=NP86444E99&word=&count=1&rand=false&ltime=0&norepeat=false&detail=false'
-        response = requests.get(proxy_url, headers=headers)
-        proxies = response.text.strip()
-        if proxies:
-            break
-        else:
-            time.sleep(15)
-    return proxies
+def get_proxies():
+    ip_url = "http://152.136.208.143:5000/w/ip/random"
+    proxies = requests.get(ip_url, headers={'User-Agent': 'Mozilla/5.0'}).json()
+    return proxies['']
 
 
 # 主函数
 async def run():
     count = '华为技术有限公司'  # 初始申请人
-    # browser = await launch(headless=False, args=['--proxy-server={}'.format(ip), '--disable-infobars', '--no-sandbox'], userDataDir='./Temporary')
+    browser = await launch(headless=False, args=['--proxy-server={}'.format('get_proxies()'), '--disable-infobars', '--no-sandbox'], userDataDir='./Temporary')
     browser = await launch(headless=False, args=['--disable-infobars', '--no-sandbox'], userDataDir='D:/Temporary')
     page1 = await browser.newPage()
     # await stealth(page)
@@ -65,22 +59,22 @@ async def run():
         print(page_list)
         page3 = page_list[-1]
         while True:
+            item = dict()
             await page3.waitForXPath('//tr[@class="ng-scope"]/td', timeout=90000)
             # 获取网页内容并提取数据
             text = await page3.content()
             html = etree.HTML(text)
             for i in range(1, 51):
-                img = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']//input/@img')
-                info = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td//text()')
-                if img:  # 将获取到的数据写入文件
-                    with open('img.csv', 'a', newline='') as s:
-                        s_csv = csv.writer(s)
-                        s_csv.writerow(img)
-                    with open('info.csv', 'a', newline='') as f:
-                        f_csv = csv.writer(f)
-                        f_csv.writerow(info)
+                item['pic_url'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']//input/@img')  # 商标图片信息
+                item['request_no'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td[2]//text()')  # 申请/注册号
+                item['world_type'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td[3]//text()')  # 国际分类
+                item['request_date'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td[4]//text()')  # 申请日期
+                item['mark_name'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td[5]//text()')  # 商标名称
+                item['request_name'] = html.xpath('//tr[@class="ng-scope"][' + str(i) + ']/td[6]//text()')  # 申请人（中文）
+                print(item)
+
             await page3.click('#mGrid_listGrid_paginator_0 > ul > li.nextPage > a')  # 点击下一页
-            await asyncio.sleep(10)
+            await asyncio.sleep(15)
 
     except Exception as e:
         print(e)

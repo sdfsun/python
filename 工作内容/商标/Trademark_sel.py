@@ -4,7 +4,6 @@
 # @Descripttion: 商标信息查询
 
 import time
-import pysnooper
 
 import requests
 from selenium import webdriver
@@ -57,12 +56,6 @@ def getDriver(headers):
             })
         """
     })
-    # with open('stealth.min.js') as f:
-    #     js = f.read()
-    # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-    #     "source": js
-    # })
-    # browser.implicitly_wait(10)
 
     return browser
 
@@ -93,8 +86,9 @@ def main():
 
     # 点击"商标综合查询"
     move3 = driver.find_element_by_xpath('//p[contains(text(),"商标综合查询")]')
-    # ActionChains(driver).move_to_element(move3).click().perform()
-    move3.click()
+    time.sleep(1)
+    ActionChains(driver).move_to_element(move3).click().perform()
+    # move3.click()
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="submitForm"]//tbody/tr[4]//input')))
 
     # 定位输入框和输入值

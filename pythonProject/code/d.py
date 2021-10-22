@@ -6,14 +6,6 @@
 # @FilePath: /pythonProject/d.py
 # @Description:
 
-
-def isPalindrome(self, x: int) -> bool:
-    a = 0
-    b = x
-    while x != 0:
-        a = a * 10 + b % 10
-        b = b // 10
-    if a == x:
-        return True
-    else:
-        return False
+a = 29420.346834659576
+data = a / 3600
+print(data)

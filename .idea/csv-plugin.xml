@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\工作内容\专利\huawei.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\工作内容\商标\img.csv">
           <value>
             <Attribute>
