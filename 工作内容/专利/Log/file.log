@@ -1,0 +1,163 @@
+Source path:... D:\Dev\python\工作内容\专利\register_req.py
+11:58:04.154216 call        85 def main():
+11:58:04.157217 line        86     userinfo = dict()
+New var:....... userinfo = {}
+11:58:04.157217 line        87     code = 0
+New var:....... code = 0
+11:58:04.158217 line        88     for i in range(100):
+New var:....... i = 0
+11:58:04.159217 line        89         password = create_passwd()
+New var:....... password = 'p0*4Kkqk2fW(r0CYX'
+11:58:04.160217 line        91         email = 'baageez@snapmail.cc'
+New var:....... email = 'baageez@snapmail.cc'
+11:58:04.160217 line        95             'Connection': 'keep-alive',
+11:58:04.161218 line        96             'Accept': '*/*',
+11:58:04.161218 line        97             'X-Requested-With': 'XMLHttpRequest',
+11:58:04.163219 line        98             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
+11:58:04.164218 line        99             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+11:58:04.165218 line       100             'Origin': 'http://123.233.113.66:8060',
+11:58:04.165218 line       101             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
+11:58:04.165218 line       102             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+11:58:04.166219 line        94         headers = {
+New var:....... headers = {'Connection': 'keep-alive', 'Accept': '*/*', 'X...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
+11:58:04.166219 line       106         province_select = ['110000', '120000', '130000', '140000', '150000', '210000', '220000', '230000', '310000', '320000', '330000', '340000', '350000', '360000', '370000', '410000', '420000', '430000', '440000', '450000', '460000', '500000', '510000', '520000', '530000', '540000', '610000', '620000', '630000', '640000', '650000', '710000', ' 810000', '820000']
+New var:....... province_select = ['110000', '120000', '130000', '140000', '150000...640000', '650000', '710000', ' 810000', '820000']
+11:58:04.167219 line       110             'email': email
+11:58:04.167219 line       109         email_name = {
+New var:....... email_name = {'email': 'baageez@snapmail.cc'}
+11:58:04.168220 line       112         procince_code = random.choice(province_select)
+New var:....... procince_code = '640000'
+11:58:04.168220 line       114             'areaCode': procince_code
+11:58:04.169220 line       113         areaCode = {
+New var:....... areaCode = {'areaCode': '640000'}
+11:58:04.169220 line       119             'http': get_proxies()
+11:58:24.254639 line       118         proxies = {
+New var:....... proxies = {'http': 'http://17610040106:081300ykp,@117.65.47.182:57114'}
+11:58:24.254639 line       123         preExecuteSearch = 'http://123.233.113.66:8060/pubsearch/patentsearch/preExecuteSearch!preExecuteSearch.do'
+New var:....... preExecuteSearch = 'http://123.233.113.66:8060/pubsearch/patentsearch/preExecuteSearch!preExecuteSearch.do'
+11:58:24.255640 line       124         username_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkUserName.shtml'
+New var:....... username_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkUserName.shtml'
+11:58:24.255640 line       125         check_email_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailIsExist.shtml'
+New var:....... check_email_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailIsExist.shtml'
+11:58:24.256639 line       126         generateEmailCode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-generateEmailCode.shtml'
+New var:....... generateEmailCode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-generateEmailCode.shtml'
+11:58:24.256639 line       127         check_emailcode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailCode.shtml'
+New var:....... check_emailcode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailCode.shtml'
+11:58:24.256639 line       128         province_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showCity.shtml'
+New var:....... province_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showCity.shtml'
+11:58:24.257640 line       129         register_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregisterAC!register.do'
+New var:....... register_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregisterAC!register.do'
+11:58:24.257640 line       131         s = requests.session()
+New var:....... s = <requests.sessions.Session object at 0x000001D708DDCF70>
+11:58:24.258640 line       132         s.proxies = proxies
+11:58:24.258640 line       133         cookies = s.post(url=preExecuteSearch, headers=headers, verify=False)  # 得到cookies
+New var:....... cookies = <Response [200]>
+11:58:24.416676 line       134         print(cookies.cookies, cookies.text)
+11:58:24.417676 line       137             username = create_username()
+New var:....... username = 'yFp71jHZnf14k4P'
+11:58:24.417676 line       138             data_username = {'userNameForCheck': username}
+New var:....... data_username = {'userNameForCheck': 'yFp71jHZnf14k4P'}
+11:58:24.418677 line       139             name = s.post(url=username_url, data=data_username, headers=headers, verify=False)  # 检查用户名
+New var:....... name = <Response [200]>
+11:58:24.823768 line       140             if name.json()['isExist'] == 'AlreadyExisted':
+11:58:24.824768 line       144         time.sleep(3)
+11:58:27.825447 line       147             mail = s.post(url=check_email_url, data=email_name, headers=headers, verify=False)  # 检查邮箱是否存在
+New var:....... mail = <Response [200]>
+11:58:28.188530 line       148             if mail.json()['isExistEmail'] == '1':
+11:58:28.189530 line       150             elif mail.json()['isExistEmail'] is None:
+11:58:28.189530 line       151                 break
+11:58:28.190530 line       152         time.sleep(3)
+11:58:31.191210 line       155             send = s.post(url=generateEmailCode_url, data=email_name, headers=headers, verify=False)  # 发送验证码
+New var:....... send = <Response [200]>
+11:58:47.843979 line       156             info = send.json()['sendSuccess']
+New var:....... info = True
+11:58:47.844979 line       157             if send.json()['sendSuccess'] == 'false':
+11:58:47.845979 line       162         time.sleep(3)
+11:58:50.846659 line       166             validation_code = get_verification_code()
+New var:....... validation_code = '9767'
+11:59:06.685420 line       167             if validation_code != code:
+11:59:06.686420 line       168                 code = validation_code
+Modified var:.. code = '9767'
+11:59:06.686420 line       169                 break
+11:59:06.686420 line       176             'validateEmailCode': validation_code
+11:59:06.687420 line       175         email_code = {
+New var:....... email_code = {'validateEmailCode': '9767'}
+11:59:06.687420 line       180             code = s.post(url=check_emailcode_url, data=email_code, headers=headers, verify=False)  # 网页检查验证码
+Modified var:.. code = <Response [200]>
+11:59:07.147524 line       181             if code.json()['validateEmailCodeFlag'] == 'false':
+11:59:07.148524 line       185         time.sleep(3)
+11:59:10.149204 line       187         area_list = s.post(url=province_url, data=areaCode, headers=headers, verify=False)  # 选择省
+New var:....... area_list = <Response [200]>
+11:59:10.541293 line       188         city_list = []
+New var:....... city_list = []
+11:59:10.541293 line       189         for n in area_list.json()['areaCodeList']:
+New var:....... n = {'code': '1', 'codeName': '银川市', 'type': None, 'typeName': '640000'}
+11:59:10.542293 line       190             city_list.append(n['code'])
+Modified var:.. city_list = ['1']
+11:59:10.542293 line       189         for n in area_list.json()['areaCodeList']:
+Modified var:.. n = {'code': '3', 'codeName': '石嘴山市', 'type': None, 'typeName': '640000'}
+11:59:10.543293 line       190             city_list.append(n['code'])
+Modified var:.. city_list = ['1', '3']
+11:59:10.543293 line       189         for n in area_list.json()['areaCodeList']:
+Modified var:.. n = {'code': '5', 'codeName': '吴忠市', 'type': None, 'typeName': '640000'}
+11:59:10.544293 line       190             city_list.append(n['code'])
+Modified var:.. city_list = ['1', '3', '5']
+11:59:10.544293 line       189         for n in area_list.json()['areaCodeList']:
+Modified var:.. n = {'code': '7', 'codeName': '固原市', 'type': None, 'typeName': '640000'}
+11:59:10.545293 line       190             city_list.append(n['code'])
+Modified var:.. city_list = ['1', '3', '5', '7']
+11:59:10.545293 line       189         for n in area_list.json()['areaCodeList']:
+Modified var:.. n = {'code': '9', 'codeName': '中卫市', 'type': None, 'typeName': '640000'}
+11:59:10.546294 line       190             city_list.append(n['code'])
+Modified var:.. city_list = ['1', '3', '5', '7', '9']
+11:59:10.546294 line       189         for n in area_list.json()['areaCodeList']:
+11:59:10.547294 line       192         city_value = random.choice(city_list)
+New var:....... city_value = '5'
+11:59:10.547294 line       195         en_username = str(base64.b64encode(username.encode('utf-8')))
+New var:....... en_username = "b'eUZwNzFqSFpuZjE0azRQ'"
+11:59:10.548294 line       196         en_password = str(base64.b64encode(password.encode("utf-8")))
+New var:....... en_password = "b'cDAqNEtrcWsyZlcocjBDWVg='"
+11:59:10.548294 line       197         en_email = str(base64.b64encode(email.encode("utf-8")))
+New var:....... en_email = "b'YmFhZ2VlekBzbmFwbWFpbC5jYw=='"
+11:59:10.549294 line       198         en_phone = str(base64.b64encode(create_phone().encode("utf-8")))
+New var:....... en_phone = "b'MTU1Mzk1OTM2OTc='"
+11:59:10.550295 line       201             '------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name': '"afterRegUrl"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="wee.bizlog.modulelevel"\r\n\r\n0101402\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="validateEmailCode"\r\n\r\n' + validation_code + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.highArea"\r\n\r\nCN\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.area_id"\r\n\r\n' + city_value + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.province"\r\n\r\n' + procince_code + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.description"\r\n\r\n' + str(random.randint(1, 13)) + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.info_status"\r\n\r\n0\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="file"; filename=""\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="fileName"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.policy"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_brief"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.account.username"\r\n\r\n' + en_username + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.account.password"\r\n\r\n' + en_password + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.email"\r\n\r\n' + en_email + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.mobile"\r\n\r\n' + en_phone + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_name"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_code"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_owner"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.register_date"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.applicant_name"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.applicant_title"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_tel"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_fax"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_address"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_zipcode"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.apply_reason"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd--'
+11:59:10.550295 line       200         data = {
+New var:....... data = {'------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nCo...n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd--'}
+11:59:10.550295 line       205             'Connection': 'keep-alive',
+11:59:10.551295 line       206             'Cache-Control': 'max-age=0',
+11:59:10.551295 line       207             'Upgrade-Insecure-Requests': '1',
+11:59:10.551295 line       208             'Origin': 'http://123.233.113.66:8060',
+11:59:10.552295 line       209             'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary6HhRcdlCDDznl1Nd',
+11:59:10.552295 line       210             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
+11:59:10.552295 line       211             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+11:59:10.553295 line       212             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
+11:59:10.553295 line       213             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+11:59:10.553295 line       204         final_headers = {
+New var:....... final_headers = {'Connection': 'keep-alive', 'Cache-Control': 'm...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
+11:59:10.553295 line       216             'Connection': 'keep-alive',
+11:59:10.554296 line       217             'Accept': 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
+11:59:10.554296 line       218             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
+11:59:10.554296 line       219             'X-Requested-With': 'XMLHttpRequest',
+11:59:10.555296 line       220             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
+11:59:10.555296 line       221             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+11:59:10.555296 line       215         base_headers = {
+New var:....... base_headers = {'Connection': 'keep-alive', 'Accept': 'text/jav...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
+11:59:10.556296 line       224         s.post(url=username_url, data=data_username, headers=headers, verify=False)
+11:59:10.974391 line       225         s.post(url=check_email_url, data=email_name, headers=headers, verify=False)
+11:59:12.059637 line       226         s.post(url=check_emailcode_url, data=email_code, headers=headers, verify=False)
+11:59:13.495961 line       227         html = s.post(url=register_url, data=data, headers=final_headers, verify=False)
+New var:....... html = <Response [200]>
+11:59:14.483185 line       228         res = html.text
+New var:....... res = '\r\n\r\n\r\n<!DOCTYPE html PUBLIC "-//W3C//DTD ...  </div>\r\n\t    </div>\r\n\t</body>\r\n</html>'
+11:59:14.484185 line       229         print(res)
+11:59:14.485185 line       230         doc = Document(html.text)
+New var:....... doc = <readability.readability.Document object at 0x000001D708F49940>
+11:59:14.485185 line       231         result = doc.title()
+New var:....... result = '异常页面'
+11:59:14.489186 line       232         if result == '注册成功':
+11:59:14.489186 line       237         time.sleep(10)
+11:59:24.490450 line       238         break
+11:59:24.490450 return     238         break
+Return value:.. None
+Elapsed time: 00:01:20.337234

@@ -4,7 +4,7 @@ import time
 import requests
 import json
 
-with open('./cookies.json') as f:
+with open('./data/test.json') as f:
     cookie = json.load(f)
     print(cookie['JSESSIONID'][0])
 
@@ -20,6 +20,8 @@ cookies = {
 
 start = time.time()
 for i in range(page_num):
+    print(i)
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     List = []
     headers = {
         'Connection': 'keep-alive',
@@ -60,8 +62,7 @@ for i in range(page_num):
             break
         info = response.json()
         data = info['searchResultDTO']['searchResultRecord']
-        print(data)
-        time.sleep(10)
+        time.sleep(5)
     except Exception as e:
         print(e)
         time.sleep(10)

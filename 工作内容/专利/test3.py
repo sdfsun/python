@@ -4,7 +4,7 @@ import time
 import requests
 import json
 
-with open('./cookies.json') as f:
+with open('./data/cookies.json') as f:
     cookie = json.load(f)
     print(cookie['JSESSIONID'][3])
 
