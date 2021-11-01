@@ -18,6 +18,7 @@ from PIL import Image
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from user_agent import generate_user_agent
 
@@ -39,7 +40,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
     # options.add_argument('--proxy-server={}'.format(get_proxies()))
-    browser = webdriver.Chrome(options=options, executable_path='C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+    browser = webdriver.Chrome(options=options)
     browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
@@ -74,30 +75,30 @@ def main():
     List = []
     info = dict()
     url = 'http://123.233.113.66:8060/pubsearch/portal/uilogin-forwardLogin.shtml'
-    with open('./data/pubup.json') as f:
+    with open('./data/userinfo.json') as f:
         userinfo = json.load(f)
 
     for username in userinfo.keys():
         password = userinfo[username]
         driver = getDriver()
         driver.get(url)
-        WebDriverWait(driver, 10).until(lambda x: x.find_element_by_xpath('//*[@id="j_username"]'))
+        WebDriverWait(driver, 10).until(lambda x: x.find_element(By.XPATH, '//*[@id="j_username"]'))
         while True:
-            name = driver.find_element_by_xpath('//*[@id="j_username"]')
+            name = driver.find_element(By.XPATH, '//*[@id="j_username"]')
             name.click()
             time.sleep(1)
             name.send_keys(username)  # 输入用户名
-            word = driver.find_element_by_xpath('//*[@id="j_password_show"]')
+            word = driver.find_element(By.XPATH, '//*[@id="j_password_show"]')
             word.click()
             time.sleep(1)
             word.send_keys(password)  # 输入用户密码
 
-            img = driver.find_element_by_xpath('//*[@id="codePic"]')
+            img = driver.find_element(By.XPATH, '//*[@id="codePic"]')
             driver.save_screenshot('./data/full.png')
-            left = img.location['x'] + 270
-            top = img.location['y'] + 80
-            right = img.location['x'] + img.size['width'] + 280
-            bottom = img.location['y'] + img.size['height'] + 80
+            left = img.location['x']
+            top = img.location['y']
+            right = img.location['x'] + img.size['width']
+            bottom = img.location['y'] + img.size['height']
             im = Image.open('./data/full.png')
             im = im.crop((left, top, right, bottom))
             im.save('./data/cut.png')
@@ -107,11 +108,14 @@ def main():
             # text = sdk.predict(image_bytes=image)
             src = cv.imread(r'./data/cut.png')
             text = recognize_text(src)
-            driver.find_element_by_xpath('//*[@id="j_validation_code"]').send_keys(text)
-            driver.find_element_by_xpath('//*[@id="loginForm"]/div[5]/a').click()
+            driver.find_element(By.XPATH, '//*[@id="j_validation_code"]').send_keys(text)
+            driver.find_element(By.XPATH, '//*[@id="loginForm"]/div[5]/a').click()
             time.sleep(5)
             try:
-                driver.find_element_by_xpath('//*[@i="button"]').click()
+                driver.find_element(By.XPATH, '//*[@i="button"]').click()
+                driver.find_element(By.XPATH, '//*[@id="j_username"]').clear()
+                driver.find_element(By.XPATH, '//*[@id="j_password_show"]').clear()
+                driver.find_element(By.XPATH, '//*[@id="codePic"]').click()
                 continue
             except Exception as e:
                 print(e)

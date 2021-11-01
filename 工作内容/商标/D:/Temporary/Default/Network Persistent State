@@ -1,0 +1,1 @@
+{"net":{"http_server_properties":{"servers":[{"https://v1.cnzz.com":{"supports_spdy":true}},{"https://cnzz.mmstat.com":{"supports_spdy":true}},{"https://hm2.cnzz.com":{"supports_spdy":true}},{"https://z6.cnzz.com":{"supports_spdy":true}}],"version":5}}}

@@ -54,17 +54,17 @@ def main():
     }
     driver = getDriver(headers=headers)
     driver.get(url)
-    WebDriverWait(driver, 100).until(lambda x: x.find_element_by_xpath('//*[@id="barrierfree_container"]/div[3]/div[7]/dl/dd[1]/ul/li[6]/a'))
-    retrieval = driver.find_element_by_xpath('//*[@id="barrierfree_container"]/div[3]/div[7]/dl/dd[1]/ul/li[6]/a')
+    WebDriverWait(driver, 100).until(lambda x: x.find_element(By.XPATH, '//*[@id="barrierfree_container"]/div[3]/div[7]/dl/dd[1]/ul/li[6]/a'))
+    retrieval = driver.find_element(By.XPATH, '//*[@id="barrierfree_container"]/div[3]/div[7]/dl/dd[1]/ul/li[6]/a')
     ActionChains(driver).move_to_element(retrieval).click().perform()
     time.sleep(1)
     handles = driver.window_handles
     driver.switch_to.window(handles[-1])
-    WebDriverWait(driver, 100).until(lambda x: x.find_element_by_xpath('//div[3]/div/div[3]/div[1]/a[1]'))
-    agree = driver.find_element_by_xpath('//div[3]/div/div[3]/div[1]/a[1]')
+    WebDriverWait(driver, 100).until(lambda x: x.find_element(By.XPATH, '//div[3]/div/div[3]/div[1]/a[1]'))
+    agree = driver.find_element(By.XPATH, '//div[3]/div/div[3]/div[1]/a[1]')
     ActionChains(driver).move_to_element(agree).click().perform()
-    WebDriverWait(driver, 100).until(lambda x: x.find_element_by_xpath('//div[1]/div[1]/div/div[1]/p/a[1]'))
-    login = driver.find_element_by_xpath('//div[1]/div[1]/div/div[1]/p/a[1]')
+    WebDriverWait(driver, 100).until(lambda x: x.find_element(By.XPATH, '//div[1]/div[1]/div/div[1]/p/a[1]'))
+    login = driver.find_element(By.XPATH, '//div[1]/div[1]/div/div[1]/p/a[1]')
     ActionChains(driver).move_to_element(login).click().perform()
     time.sleep(10)
 

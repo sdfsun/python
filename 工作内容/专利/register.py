@@ -13,6 +13,7 @@ import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from user_agent import generate_user_agent
 
@@ -34,7 +35,7 @@ def getDriver():
     options.add_argument('--disable-bundled-ppapi-flash')
     options.add_argument('--mute-audio')
     # options.add_argument('--proxy-server={}'.format(get_proxies()))
-    browser = webdriver.Chrome(options=options, executable_path='C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+    browser = webdriver.Chrome(options=options)
     browser.maximize_window()
     browser.execute_cdp_cmd("Network.enable", {})
     browser.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"User-Agent": "browserClientA"}})
@@ -49,7 +50,7 @@ def getDriver():
 
 def get_verification_code():
     for i in range(50):
-        req = requests.get('https://www.snapmail.cc/emailList/pubup@snapmail.cc?isPrefix=True&count=1')
+        req = requests.get('https://www.snapmail.cc/emailList/sewe@snapmail.cc?isPrefix=True&count=1')
         if req.status_code == 200:
             email_text = json.loads(req.text)[0]['html']
             validation_code = re.search(r'([0-9]{4})', email_text)
@@ -97,12 +98,12 @@ def main():
     name_n = string.digits
     name_t = '~!@#$%^&*()'
     driver = getDriver()
-    min_num = 20
-    max_num = 220
+    min_num = 120
+    max_num = 130
     while min_num <= max_num:
         try:
             time.sleep(5)
-            email = 'pubup' + str(n + 1) + '@snapmail.cc'  # 邮箱
+            email = 'sewe' + str(min_num + 1) + '@snapmail.cc'  # 邮箱
             username_n = random.randint(4, 19)
             password_n = random.randint(12, 19)
             username_l = []
@@ -126,18 +127,18 @@ def main():
             password = ''.join(password_l)  # 密码
 
             driver.get(url)
-            WebDriverWait(driver, 15).until(lambda x: x.find_element_by_xpath('//*[@id="globleBody"]/div[2]/div[1]/div[3]/div[2]/div[2]/a[2]'))
-            driver.find_element_by_xpath('//*[@id="globleBody"]/div[2]/div[1]/div[3]/div[2]/div[2]/a[2]').click()  # 点击“注册”
-            WebDriverWait(driver, 15).until(lambda x: x.find_element_by_xpath('//input[@name="userAccount.account.username"]'))
-            driver.find_element_by_xpath('//input[@name="userAccount.account.username"]').send_keys(username)  # 用户名
-            driver.find_element_by_xpath('//input[@name="userAccount.account.password"]').send_keys(password)  # 密码
-            driver.find_element_by_xpath('//*[@id="recheckPwd"]/label/div[1]/input').send_keys(password)  # 确认密码
-            driver.find_element_by_xpath('//*[@id="email"]/label/div[1]/input').send_keys(email)  # 邮箱
+            WebDriverWait(driver, 15).until(lambda x: x.find_element(By.XPATH, '//*[@id="globleBody"]/div[2]/div[1]/div[3]/div[2]/div[2]/a[2]'))
+            driver.find_element(By.XPATH, '//*[@id="globleBody"]/div[2]/div[1]/div[3]/div[2]/div[2]/a[2]').click()  # 点击“注册”
+            WebDriverWait(driver, 15).until(lambda x: x.find_element(By.XPATH, '//input[@name="userAccount.account.username"]'))
+            driver.find_element(By.XPATH, '//input[@name="userAccount.account.username"]').send_keys(username)  # 用户名
+            driver.find_element(By.XPATH, '//input[@name="userAccount.account.password"]').send_keys(password)  # 密码
+            driver.find_element(By.XPATH, '//*[@id="recheckPwd"]/label/div[1]/input').send_keys(password)  # 确认密码
+            driver.find_element(By.XPATH, '//*[@id="email"]/label/div[1]/input').send_keys(email)  # 邮箱
             driver.implicitly_wait(1)
-            driver.find_element_by_xpath('//*[@id="emailCode"]/label/div[2]/a').click()  # 点击发送验证码
+            driver.find_element(By.XPATH, '//*[@id="emailCode"]/label/div[2]/a').click()  # 点击发送验证码
             time.sleep(5)
             while True:
-                info = driver.find_element_by_xpath('//*[@id="emailCode"]/label/div[2]/span[2]').get_attribute('textContent')
+                info = driver.find_element(By.XPATH, '//*[@id="emailCode"]/label/div[2]/span[2]').get_attribute('textContent')
                 if info != '验证码发送成功':
                     continue
                 validation_code = get_verification_code()  # 获取验证码
@@ -147,26 +148,26 @@ def main():
                 else:
                     time.sleep(5)
 
-            driver.find_element_by_xpath('//*[@id="emailCode"]/label/div[1]/input').send_keys(validation_code)  # 输入验证码
-            info = driver.find_element_by_xpath('//*[@id="emailCode"]/label/div[2]/span[2]').get_attribute('textContent')
+            driver.find_element(By.XPATH, '//*[@id="emailCode"]/label/div[1]/input').send_keys(validation_code)  # 输入验证码
+            info = driver.find_element(By.XPATH, '//*[@id="emailCode"]/label/div[2]/span[2]').get_attribute('textContent')
             if info == '邮箱验证码输入错误':
                 continue
 
-            driver.find_element_by_xpath('//*[@id="mobile"]/label/div[1]/input').send_keys(create_phone())  # 输入随机手机号
+            driver.find_element(By.XPATH, '//*[@id="mobile"]/label/div[1]/input').send_keys(create_phone())  # 输入随机手机号
             province_select = ['110000', '120000', '130000', '140000', '150000', '210000', '220000', '230000', '310000', '320000', '330000', '340000', '350000', '360000', '370000', '410000', '420000', '430000', '440000', '450000', '460000', '500000', '510000', '520000', '530000', '540000', '610000', '620000', '630000', '640000', '650000', '710000', ' 810000', '820000']  # 省份value
-            driver.find_element_by_xpath('//*[@id="higherArea"]/option[@value="' + random.choice(province_select) + '"]').click()  # 随机点击省份
+            driver.find_element(By.XPATH, '//*[@id="higherArea"]/option[@value="' + random.choice(province_select) + '"]').click()  # 随机点击省份
             driver.implicitly_wait(1)
             while True:
                 try:
-                    driver.find_element_by_xpath('//*[@id="province"]/option[@value="' + str(random.randint(1, 77)) + '"]').click()  # 随机市区
+                    driver.find_element(By.XPATH, '//*[@id="province"]/option[@value="' + str(random.randint(1, 77)) + '"]').click()  # 随机市区
                     break
                 except NoSuchElementException:
                     continue
             driver.implicitly_wait(1)
-            driver.find_element_by_xpath('//*[@id="company_catalog"]/option[@value="' + str(random.randint(1, 13)) + '"]').click()  # 用户类别
+            driver.find_element(By.XPATH, '//*[@id="company_catalog"]/option[@value="' + str(random.randint(1, 13)) + '"]').click()  # 用户类别
             driver.implicitly_wait(1)
-            driver.find_element_by_xpath('//*[@id="agreement"]/div/p/label/input').click()  # 我已经阅读并同意
-            driver.find_element_by_xpath('//*[@id="regBtn"]/label/div/a').click()  # 立即注册
+            driver.find_element(By.XPATH, '//*[@id="agreement"]/div/p/label/input').click()  # 我已经阅读并同意
+            driver.find_element(By.XPATH, '//*[@id="regBtn"]/label/div/a').click()  # 立即注册
             min_num += 1
             time.sleep(5)
             userinfo[username] = password

@@ -1,163 +1,255 @@
-Source path:... D:\Dev\python\工作内容\专利\register_req.py
-11:58:04.154216 call        85 def main():
-11:58:04.157217 line        86     userinfo = dict()
+Source path:... C:\Users\18410\AppData\Local\Temp/ipykernel_12792/286707549.py
+17:43:23.062913 call        84 SOURCE IS UNAVAILABLE
+17:43:23.062913 line        86 SOURCE IS UNAVAILABLE
 New var:....... userinfo = {}
-11:58:04.157217 line        87     code = 0
+17:43:23.063914 line        87 SOURCE IS UNAVAILABLE
 New var:....... code = 0
-11:58:04.158217 line        88     for i in range(100):
+17:43:23.063914 line        88 SOURCE IS UNAVAILABLE
 New var:....... i = 0
-11:58:04.159217 line        89         password = create_passwd()
-New var:....... password = 'p0*4Kkqk2fW(r0CYX'
-11:58:04.160217 line        91         email = 'baageez@snapmail.cc'
-New var:....... email = 'baageez@snapmail.cc'
-11:58:04.160217 line        95             'Connection': 'keep-alive',
-11:58:04.161218 line        96             'Accept': '*/*',
-11:58:04.161218 line        97             'X-Requested-With': 'XMLHttpRequest',
-11:58:04.163219 line        98             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
-11:58:04.164218 line        99             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-11:58:04.165218 line       100             'Origin': 'http://123.233.113.66:8060',
-11:58:04.165218 line       101             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
-11:58:04.165218 line       102             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-11:58:04.166219 line        94         headers = {
+17:43:23.063914 line        89 SOURCE IS UNAVAILABLE
+New var:....... password = 'uomM$H_lmwszjYU*k9'
+17:43:23.064915 line        91 SOURCE IS UNAVAILABLE
+New var:....... email = 'bikp@snapmail.cc'
+17:43:23.065915 line        95 SOURCE IS UNAVAILABLE
+17:43:23.065915 line        96 SOURCE IS UNAVAILABLE
+17:43:23.065915 line        97 SOURCE IS UNAVAILABLE
+17:43:23.066914 line        98 SOURCE IS UNAVAILABLE
+17:43:23.066914 line        99 SOURCE IS UNAVAILABLE
+17:43:23.067914 line       100 SOURCE IS UNAVAILABLE
+17:43:23.067914 line       101 SOURCE IS UNAVAILABLE
+17:43:23.067914 line       102 SOURCE IS UNAVAILABLE
+17:43:23.067914 line        94 SOURCE IS UNAVAILABLE
 New var:....... headers = {'Connection': 'keep-alive', 'Accept': '*/*', 'X...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
-11:58:04.166219 line       106         province_select = ['110000', '120000', '130000', '140000', '150000', '210000', '220000', '230000', '310000', '320000', '330000', '340000', '350000', '360000', '370000', '410000', '420000', '430000', '440000', '450000', '460000', '500000', '510000', '520000', '530000', '540000', '610000', '620000', '630000', '640000', '650000', '710000', ' 810000', '820000']
+17:43:23.068914 line       106 SOURCE IS UNAVAILABLE
 New var:....... province_select = ['110000', '120000', '130000', '140000', '150000...640000', '650000', '710000', ' 810000', '820000']
-11:58:04.167219 line       110             'email': email
-11:58:04.167219 line       109         email_name = {
-New var:....... email_name = {'email': 'baageez@snapmail.cc'}
-11:58:04.168220 line       112         procince_code = random.choice(province_select)
+17:43:23.068914 line       110 SOURCE IS UNAVAILABLE
+17:43:23.068914 line       109 SOURCE IS UNAVAILABLE
+New var:....... email_name = {'email': 'bikp@snapmail.cc'}
+17:43:23.069914 line       112 SOURCE IS UNAVAILABLE
 New var:....... procince_code = '640000'
-11:58:04.168220 line       114             'areaCode': procince_code
-11:58:04.169220 line       113         areaCode = {
+17:43:23.069914 line       114 SOURCE IS UNAVAILABLE
+17:43:23.069914 line       113 SOURCE IS UNAVAILABLE
 New var:....... areaCode = {'areaCode': '640000'}
-11:58:04.169220 line       119             'http': get_proxies()
-11:58:24.254639 line       118         proxies = {
-New var:....... proxies = {'http': 'http://17610040106:081300ykp,@117.65.47.182:57114'}
-11:58:24.254639 line       123         preExecuteSearch = 'http://123.233.113.66:8060/pubsearch/patentsearch/preExecuteSearch!preExecuteSearch.do'
+17:43:23.070915 line       119 SOURCE IS UNAVAILABLE
+17:43:23.350190 line       118 SOURCE IS UNAVAILABLE
+New var:....... proxies = {'http': 'http://17610040106:081300ykp,@218.91.7.8:57114'}
+17:43:23.351190 line       123 SOURCE IS UNAVAILABLE
 New var:....... preExecuteSearch = 'http://123.233.113.66:8060/pubsearch/patentsearch/preExecuteSearch!preExecuteSearch.do'
-11:58:24.255640 line       124         username_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkUserName.shtml'
+17:43:23.352190 line       124 SOURCE IS UNAVAILABLE
 New var:....... username_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkUserName.shtml'
-11:58:24.255640 line       125         check_email_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailIsExist.shtml'
+17:43:23.352190 line       125 SOURCE IS UNAVAILABLE
 New var:....... check_email_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailIsExist.shtml'
-11:58:24.256639 line       126         generateEmailCode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-generateEmailCode.shtml'
+17:43:23.352190 line       126 SOURCE IS UNAVAILABLE
 New var:....... generateEmailCode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-generateEmailCode.shtml'
-11:58:24.256639 line       127         check_emailcode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailCode.shtml'
+17:43:23.353190 line       127 SOURCE IS UNAVAILABLE
 New var:....... check_emailcode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailCode.shtml'
-11:58:24.256639 line       128         province_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showCity.shtml'
+17:43:23.353190 line       128 SOURCE IS UNAVAILABLE
 New var:....... province_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showCity.shtml'
-11:58:24.257640 line       129         register_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregisterAC!register.do'
+17:43:23.354190 line       129 SOURCE IS UNAVAILABLE
 New var:....... register_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregisterAC!register.do'
-11:58:24.257640 line       131         s = requests.session()
-New var:....... s = <requests.sessions.Session object at 0x000001D708DDCF70>
-11:58:24.258640 line       132         s.proxies = proxies
-11:58:24.258640 line       133         cookies = s.post(url=preExecuteSearch, headers=headers, verify=False)  # 得到cookies
+17:43:23.354190 line       131 SOURCE IS UNAVAILABLE
+New var:....... s = <requests.sessions.Session object at 0x0000025D74234A00>
+17:43:23.355190 line       132 SOURCE IS UNAVAILABLE
+17:43:23.355190 line       133 SOURCE IS UNAVAILABLE
 New var:....... cookies = <Response [200]>
-11:58:24.416676 line       134         print(cookies.cookies, cookies.text)
-11:58:24.417676 line       137             username = create_username()
-New var:....... username = 'yFp71jHZnf14k4P'
-11:58:24.417676 line       138             data_username = {'userNameForCheck': username}
-New var:....... data_username = {'userNameForCheck': 'yFp71jHZnf14k4P'}
-11:58:24.418677 line       139             name = s.post(url=username_url, data=data_username, headers=headers, verify=False)  # 检查用户名
+17:43:23.737924 line       134 SOURCE IS UNAVAILABLE
+17:43:23.738921 line       137 SOURCE IS UNAVAILABLE
+New var:....... username = 'v7zMoyI_'
+17:43:23.739912 line       138 SOURCE IS UNAVAILABLE
+New var:....... data_username = {'userNameForCheck': 'v7zMoyI_'}
+17:43:23.739912 line       139 SOURCE IS UNAVAILABLE
 New var:....... name = <Response [200]>
-11:58:24.823768 line       140             if name.json()['isExist'] == 'AlreadyExisted':
-11:58:24.824768 line       144         time.sleep(3)
-11:58:27.825447 line       147             mail = s.post(url=check_email_url, data=email_name, headers=headers, verify=False)  # 检查邮箱是否存在
+17:43:25.018710 line       140 SOURCE IS UNAVAILABLE
+17:43:25.018710 line       144 SOURCE IS UNAVAILABLE
+17:43:28.026837 line       147 SOURCE IS UNAVAILABLE
 New var:....... mail = <Response [200]>
-11:58:28.188530 line       148             if mail.json()['isExistEmail'] == '1':
-11:58:28.189530 line       150             elif mail.json()['isExistEmail'] is None:
-11:58:28.189530 line       151                 break
-11:58:28.190530 line       152         time.sleep(3)
-11:58:31.191210 line       155             send = s.post(url=generateEmailCode_url, data=email_name, headers=headers, verify=False)  # 发送验证码
+17:43:30.136813 line       148 SOURCE IS UNAVAILABLE
+17:43:30.137327 line       150 SOURCE IS UNAVAILABLE
+17:43:30.138323 line       151 SOURCE IS UNAVAILABLE
+17:43:30.138323 line       152 SOURCE IS UNAVAILABLE
+17:43:33.146581 line       155 SOURCE IS UNAVAILABLE
 New var:....... send = <Response [200]>
-11:58:47.843979 line       156             info = send.json()['sendSuccess']
+17:43:43.497835 line       156 SOURCE IS UNAVAILABLE
 New var:....... info = True
-11:58:47.844979 line       157             if send.json()['sendSuccess'] == 'false':
-11:58:47.845979 line       162         time.sleep(3)
-11:58:50.846659 line       166             validation_code = get_verification_code()
-New var:....... validation_code = '9767'
-11:59:06.685420 line       167             if validation_code != code:
-11:59:06.686420 line       168                 code = validation_code
-Modified var:.. code = '9767'
-11:59:06.686420 line       169                 break
-11:59:06.686420 line       176             'validateEmailCode': validation_code
-11:59:06.687420 line       175         email_code = {
-New var:....... email_code = {'validateEmailCode': '9767'}
-11:59:06.687420 line       180             code = s.post(url=check_emailcode_url, data=email_code, headers=headers, verify=False)  # 网页检查验证码
+17:43:43.498675 line       157 SOURCE IS UNAVAILABLE
+17:43:43.498675 line       162 SOURCE IS UNAVAILABLE
+17:43:46.509908 line       166 SOURCE IS UNAVAILABLE
+17:45:47.849123 exception  166 SOURCE IS UNAVAILABLE
+Exception:..... KeyboardInterrupt
+Call ended by exception
+Elapsed time: 00:02:24.787210
+Source path:... C:\Users\18410\AppData\Local\Temp/ipykernel_8032/286707549.py
+19:38:44.551341 call        84 SOURCE IS UNAVAILABLE
+19:38:44.553155 line        86 SOURCE IS UNAVAILABLE
+New var:....... userinfo = {}
+19:38:44.553155 line        87 SOURCE IS UNAVAILABLE
+New var:....... code = 0
+19:38:44.554141 line        88 SOURCE IS UNAVAILABLE
+New var:....... i = 0
+19:38:44.554213 line        89 SOURCE IS UNAVAILABLE
+New var:....... password = 'Mj8KgT^h~3uv^'
+19:38:44.555141 line        91 SOURCE IS UNAVAILABLE
+New var:....... email = 'bikp@snapmail.cc'
+19:38:44.555141 line        95 SOURCE IS UNAVAILABLE
+19:38:44.556141 line        96 SOURCE IS UNAVAILABLE
+19:38:44.556141 line        97 SOURCE IS UNAVAILABLE
+19:38:44.556141 line        98 SOURCE IS UNAVAILABLE
+19:38:44.557143 line        99 SOURCE IS UNAVAILABLE
+19:38:44.557143 line       100 SOURCE IS UNAVAILABLE
+19:38:44.557143 line       101 SOURCE IS UNAVAILABLE
+19:38:44.558141 line       102 SOURCE IS UNAVAILABLE
+19:38:44.558141 line        94 SOURCE IS UNAVAILABLE
+New var:....... headers = {'Connection': 'keep-alive', 'Accept': '*/*', 'X...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
+19:38:44.558141 line       106 SOURCE IS UNAVAILABLE
+New var:....... province_select = ['110000', '120000', '130000', '140000', '150000...640000', '650000', '710000', ' 810000', '820000']
+19:38:44.559142 line       110 SOURCE IS UNAVAILABLE
+19:38:44.559142 line       109 SOURCE IS UNAVAILABLE
+New var:....... email_name = {'email': 'bikp@snapmail.cc'}
+19:38:44.560142 line       112 SOURCE IS UNAVAILABLE
+New var:....... procince_code = '630000'
+19:38:44.560142 line       114 SOURCE IS UNAVAILABLE
+19:38:44.561143 line       113 SOURCE IS UNAVAILABLE
+New var:....... areaCode = {'areaCode': '630000'}
+19:38:44.561143 line       119 SOURCE IS UNAVAILABLE
+19:38:44.726868 line       118 SOURCE IS UNAVAILABLE
+New var:....... proxies = {'http': 'http://17610040106:081300ykp,@125.87.93.172:57114'}
+19:38:44.727868 line       123 SOURCE IS UNAVAILABLE
+New var:....... preExecuteSearch = 'http://123.233.113.66:8060/pubsearch/patentsearch/preExecuteSearch!preExecuteSearch.do'
+19:38:44.727868 line       124 SOURCE IS UNAVAILABLE
+New var:....... username_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkUserName.shtml'
+19:38:44.728868 line       125 SOURCE IS UNAVAILABLE
+New var:....... check_email_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailIsExist.shtml'
+19:38:44.728868 line       126 SOURCE IS UNAVAILABLE
+New var:....... generateEmailCode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-generateEmailCode.shtml'
+19:38:44.728868 line       127 SOURCE IS UNAVAILABLE
+New var:....... check_emailcode_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-checkEmailCode.shtml'
+19:38:44.729868 line       128 SOURCE IS UNAVAILABLE
+New var:....... province_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showCity.shtml'
+19:38:44.729868 line       129 SOURCE IS UNAVAILABLE
+New var:....... register_url = 'http://123.233.113.66:8060/pubsearch/portal/uiregisterAC!register.do'
+19:38:44.730868 line       131 SOURCE IS UNAVAILABLE
+New var:....... s = <requests.sessions.Session object at 0x000001FB1D7C4A00>
+19:38:44.730868 line       132 SOURCE IS UNAVAILABLE
+19:38:44.731869 line       133 SOURCE IS UNAVAILABLE
+New var:....... cookies = <Response [200]>
+19:38:45.005455 line       134 SOURCE IS UNAVAILABLE
+19:38:45.006455 line       137 SOURCE IS UNAVAILABLE
+New var:....... username = 'rln_bCaOXC9MPas07Wjs'
+19:38:45.007456 line       138 SOURCE IS UNAVAILABLE
+New var:....... data_username = {'userNameForCheck': 'rln_bCaOXC9MPas07Wjs'}
+19:38:45.007456 line       139 SOURCE IS UNAVAILABLE
+New var:....... name = <Response [200]>
+19:38:45.595327 line       140 SOURCE IS UNAVAILABLE
+19:38:45.596327 line       144 SOURCE IS UNAVAILABLE
+19:38:48.596341 line       147 SOURCE IS UNAVAILABLE
+New var:....... mail = <Response [200]>
+19:38:49.170709 line       148 SOURCE IS UNAVAILABLE
+19:38:49.171709 line       150 SOURCE IS UNAVAILABLE
+19:38:49.171709 line       151 SOURCE IS UNAVAILABLE
+19:38:49.171709 line       152 SOURCE IS UNAVAILABLE
+19:38:52.178447 line       155 SOURCE IS UNAVAILABLE
+New var:....... send = <Response [200]>
+19:39:02.652864 line       156 SOURCE IS UNAVAILABLE
+New var:....... info = True
+19:39:02.653859 line       157 SOURCE IS UNAVAILABLE
+19:39:02.654859 line       162 SOURCE IS UNAVAILABLE
+19:39:05.656104 line       166 SOURCE IS UNAVAILABLE
+New var:....... validation_code = '9123'
+19:39:07.913134 line       167 SOURCE IS UNAVAILABLE
+19:39:07.913134 line       168 SOURCE IS UNAVAILABLE
+Modified var:.. code = '9123'
+19:39:07.914126 line       169 SOURCE IS UNAVAILABLE
+19:39:07.914126 line       176 SOURCE IS UNAVAILABLE
+19:39:07.914126 line       175 SOURCE IS UNAVAILABLE
+New var:....... email_code = {'validateEmailCode': '9123'}
+19:39:07.915126 line       180 SOURCE IS UNAVAILABLE
 Modified var:.. code = <Response [200]>
-11:59:07.147524 line       181             if code.json()['validateEmailCodeFlag'] == 'false':
-11:59:07.148524 line       185         time.sleep(3)
-11:59:10.149204 line       187         area_list = s.post(url=province_url, data=areaCode, headers=headers, verify=False)  # 选择省
+19:39:08.494071 line       181 SOURCE IS UNAVAILABLE
+19:39:08.494071 line       185 SOURCE IS UNAVAILABLE
+19:39:11.508843 line       187 SOURCE IS UNAVAILABLE
 New var:....... area_list = <Response [200]>
-11:59:10.541293 line       188         city_list = []
+19:39:12.040144 line       188 SOURCE IS UNAVAILABLE
 New var:....... city_list = []
-11:59:10.541293 line       189         for n in area_list.json()['areaCodeList']:
-New var:....... n = {'code': '1', 'codeName': '银川市', 'type': None, 'typeName': '640000'}
-11:59:10.542293 line       190             city_list.append(n['code'])
+19:39:12.041144 line       189 SOURCE IS UNAVAILABLE
+New var:....... n = {'code': '1', 'codeName': '西宁市', 'type': None, 'typeName': '630000'}
+19:39:12.041144 line       190 SOURCE IS UNAVAILABLE
 Modified var:.. city_list = ['1']
-11:59:10.542293 line       189         for n in area_list.json()['areaCodeList']:
-Modified var:.. n = {'code': '3', 'codeName': '石嘴山市', 'type': None, 'typeName': '640000'}
-11:59:10.543293 line       190             city_list.append(n['code'])
+19:39:12.042144 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '3', 'codeName': '海东市', 'type': None, 'typeName': '630000'}
+19:39:12.042144 line       190 SOURCE IS UNAVAILABLE
 Modified var:.. city_list = ['1', '3']
-11:59:10.543293 line       189         for n in area_list.json()['areaCodeList']:
-Modified var:.. n = {'code': '5', 'codeName': '吴忠市', 'type': None, 'typeName': '640000'}
-11:59:10.544293 line       190             city_list.append(n['code'])
+19:39:12.042144 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '5', 'codeName': '海北藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.042144 line       190 SOURCE IS UNAVAILABLE
 Modified var:.. city_list = ['1', '3', '5']
-11:59:10.544293 line       189         for n in area_list.json()['areaCodeList']:
-Modified var:.. n = {'code': '7', 'codeName': '固原市', 'type': None, 'typeName': '640000'}
-11:59:10.545293 line       190             city_list.append(n['code'])
+19:39:12.043348 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '7', 'codeName': '黄南藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.043348 line       190 SOURCE IS UNAVAILABLE
 Modified var:.. city_list = ['1', '3', '5', '7']
-11:59:10.545293 line       189         for n in area_list.json()['areaCodeList']:
-Modified var:.. n = {'code': '9', 'codeName': '中卫市', 'type': None, 'typeName': '640000'}
-11:59:10.546294 line       190             city_list.append(n['code'])
+19:39:12.044345 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '9', 'codeName': '海南藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.044345 line       190 SOURCE IS UNAVAILABLE
 Modified var:.. city_list = ['1', '3', '5', '7', '9']
-11:59:10.546294 line       189         for n in area_list.json()['areaCodeList']:
-11:59:10.547294 line       192         city_value = random.choice(city_list)
-New var:....... city_value = '5'
-11:59:10.547294 line       195         en_username = str(base64.b64encode(username.encode('utf-8')))
-New var:....... en_username = "b'eUZwNzFqSFpuZjE0azRQ'"
-11:59:10.548294 line       196         en_password = str(base64.b64encode(password.encode("utf-8")))
-New var:....... en_password = "b'cDAqNEtrcWsyZlcocjBDWVg='"
-11:59:10.548294 line       197         en_email = str(base64.b64encode(email.encode("utf-8")))
-New var:....... en_email = "b'YmFhZ2VlekBzbmFwbWFpbC5jYw=='"
-11:59:10.549294 line       198         en_phone = str(base64.b64encode(create_phone().encode("utf-8")))
-New var:....... en_phone = "b'MTU1Mzk1OTM2OTc='"
-11:59:10.550295 line       201             '------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name': '"afterRegUrl"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="wee.bizlog.modulelevel"\r\n\r\n0101402\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="validateEmailCode"\r\n\r\n' + validation_code + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.highArea"\r\n\r\nCN\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.area_id"\r\n\r\n' + city_value + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.province"\r\n\r\n' + procince_code + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.description"\r\n\r\n' + str(random.randint(1, 13)) + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.info_status"\r\n\r\n0\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="file"; filename=""\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="fileName"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.policy"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_brief"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.account.username"\r\n\r\n' + en_username + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.account.password"\r\n\r\n' + en_password + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.email"\r\n\r\n' + en_email + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.user.extendInfo.mobile"\r\n\r\n' + en_phone + '\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_name"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_code"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_owner"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.register_date"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.applicant_name"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.applicant_title"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_tel"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_fax"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_address"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.company_zipcode"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nContent-Disposition: form-data; name="userAccount.AdvanceUserInfo.apply_reason"\r\n\r\n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd--'
-11:59:10.550295 line       200         data = {
+19:39:12.044345 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '11', 'codeName': '果洛藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.045344 line       190 SOURCE IS UNAVAILABLE
+Modified var:.. city_list = ['1', '3', '5', '7', '9', '11']
+19:39:12.045344 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '13', 'codeName': '玉树藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.046345 line       190 SOURCE IS UNAVAILABLE
+Modified var:.. city_list = ['1', '3', '5', '7', '9', '11', '13']
+19:39:12.046345 line       189 SOURCE IS UNAVAILABLE
+Modified var:.. n = {'code': '15', 'codeName': '海西蒙古族藏族自治州', 'type': None, 'typeName': '630000'}
+19:39:12.047344 line       190 SOURCE IS UNAVAILABLE
+Modified var:.. city_list = ['1', '3', '5', '7', '9', '11', '13', '15']
+19:39:12.047344 line       189 SOURCE IS UNAVAILABLE
+19:39:12.047344 line       192 SOURCE IS UNAVAILABLE
+New var:....... city_value = '11'
+19:39:12.048345 line       195 SOURCE IS UNAVAILABLE
+New var:....... en_username = "b'cmxuX2JDYU9YQzlNUGFzMDdXanM='"
+19:39:12.048345 line       196 SOURCE IS UNAVAILABLE
+New var:....... en_password = "b'TWo4S2dUXmh+M3V2Xg=='"
+19:39:12.048345 line       197 SOURCE IS UNAVAILABLE
+New var:....... en_email = "b'YmlrcEBzbmFwbWFpbC5jYw=='"
+19:39:12.049345 line       198 SOURCE IS UNAVAILABLE
+New var:....... en_phone = "b'MTQ1MzQ2NTU1ODQ='"
+19:39:12.049345 line       201 SOURCE IS UNAVAILABLE
+19:39:12.050345 line       200 SOURCE IS UNAVAILABLE
 New var:....... data = {'------WebKitFormBoundary6HhRcdlCDDznl1Nd\r\nCo...n\r\n------WebKitFormBoundary6HhRcdlCDDznl1Nd--'}
-11:59:10.550295 line       205             'Connection': 'keep-alive',
-11:59:10.551295 line       206             'Cache-Control': 'max-age=0',
-11:59:10.551295 line       207             'Upgrade-Insecure-Requests': '1',
-11:59:10.551295 line       208             'Origin': 'http://123.233.113.66:8060',
-11:59:10.552295 line       209             'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary6HhRcdlCDDznl1Nd',
-11:59:10.552295 line       210             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
-11:59:10.552295 line       211             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-11:59:10.553295 line       212             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
-11:59:10.553295 line       213             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-11:59:10.553295 line       204         final_headers = {
+19:39:12.050345 line       205 SOURCE IS UNAVAILABLE
+19:39:12.050345 line       206 SOURCE IS UNAVAILABLE
+19:39:12.051345 line       207 SOURCE IS UNAVAILABLE
+19:39:12.051345 line       208 SOURCE IS UNAVAILABLE
+19:39:12.051345 line       209 SOURCE IS UNAVAILABLE
+19:39:12.051345 line       210 SOURCE IS UNAVAILABLE
+19:39:12.051345 line       211 SOURCE IS UNAVAILABLE
+19:39:12.052614 line       212 SOURCE IS UNAVAILABLE
+19:39:12.052614 line       213 SOURCE IS UNAVAILABLE
+19:39:12.052614 line       204 SOURCE IS UNAVAILABLE
 New var:....... final_headers = {'Connection': 'keep-alive', 'Cache-Control': 'm...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
-11:59:10.553295 line       216             'Connection': 'keep-alive',
-11:59:10.554296 line       217             'Accept': 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
-11:59:10.554296 line       218             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50',
-11:59:10.554296 line       219             'X-Requested-With': 'XMLHttpRequest',
-11:59:10.555296 line       220             'Referer': 'http://123.233.113.66:8060/pubsearch/portal/uiregister-showRegisterPage.shtml',
-11:59:10.555296 line       221             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-11:59:10.555296 line       215         base_headers = {
+19:39:12.053375 line       216 SOURCE IS UNAVAILABLE
+19:39:12.053375 line       217 SOURCE IS UNAVAILABLE
+19:39:12.053375 line       218 SOURCE IS UNAVAILABLE
+19:39:12.054366 line       219 SOURCE IS UNAVAILABLE
+19:39:12.054366 line       220 SOURCE IS UNAVAILABLE
+19:39:12.054366 line       221 SOURCE IS UNAVAILABLE
+19:39:12.054366 line       215 SOURCE IS UNAVAILABLE
 New var:....... base_headers = {'Connection': 'keep-alive', 'Accept': 'text/jav...zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'}
-11:59:10.556296 line       224         s.post(url=username_url, data=data_username, headers=headers, verify=False)
-11:59:10.974391 line       225         s.post(url=check_email_url, data=email_name, headers=headers, verify=False)
-11:59:12.059637 line       226         s.post(url=check_emailcode_url, data=email_code, headers=headers, verify=False)
-11:59:13.495961 line       227         html = s.post(url=register_url, data=data, headers=final_headers, verify=False)
+19:39:12.055366 line       224 SOURCE IS UNAVAILABLE
+19:39:12.619463 line       225 SOURCE IS UNAVAILABLE
+19:39:13.139497 line       226 SOURCE IS UNAVAILABLE
+19:39:13.663321 line       227 SOURCE IS UNAVAILABLE
 New var:....... html = <Response [200]>
-11:59:14.483185 line       228         res = html.text
+19:39:14.039294 line       228 SOURCE IS UNAVAILABLE
 New var:....... res = '\r\n\r\n\r\n<!DOCTYPE html PUBLIC "-//W3C//DTD ...  </div>\r\n\t    </div>\r\n\t</body>\r\n</html>'
-11:59:14.484185 line       229         print(res)
-11:59:14.485185 line       230         doc = Document(html.text)
-New var:....... doc = <readability.readability.Document object at 0x000001D708F49940>
-11:59:14.485185 line       231         result = doc.title()
+19:39:14.040294 line       229 SOURCE IS UNAVAILABLE
+19:39:14.040294 line       230 SOURCE IS UNAVAILABLE
+New var:....... doc = <readability.readability.Document object at 0x000001FB1D824E80>
+19:39:14.041294 line       231 SOURCE IS UNAVAILABLE
 New var:....... result = '异常页面'
-11:59:14.489186 line       232         if result == '注册成功':
-11:59:14.489186 line       237         time.sleep(10)
-11:59:24.490450 line       238         break
-11:59:24.490450 return     238         break
+19:39:14.042803 line       232 SOURCE IS UNAVAILABLE
+19:39:14.042803 line       237 SOURCE IS UNAVAILABLE
+19:39:24.053300 line       238 SOURCE IS UNAVAILABLE
+19:39:24.053300 return     238 SOURCE IS UNAVAILABLE
 Return value:.. None
-Elapsed time: 00:01:20.337234
+Elapsed time: 00:00:39.503942

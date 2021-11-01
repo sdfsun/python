@@ -8,11 +8,17 @@ import time
 
 import requests
 
+def get_proxies():
+    ip_url = "http://152.136.208.143:5000/w/ip/random"
+    proxies = requests.get(ip_url, headers={'User-Agent': 'Mozilla/5.0'}).json()
+    print(proxies['http'])
+    return proxies
+
 page_num = 1
 cookies = {
     # 'IS_LOGIN': 'true',
     # 'WEE_SID': '18B2E0ABC0373F90FC2AE1DC2CEC055B.pubsearch02',
-    'JSESSIONID': '1D184F05E1A52086622CF3A2FC6C4490.pubsearch02',
+    'JSESSIONID': '38638142D78F94A180780D8F9E1D1029.pubsearch01',
     # 'avoid_declare': 'declare_pass',
     # 'Anonymity_SearchHistory_SessionId': '20D21AEEFAA4F4BD28FB7E78C61C1BC8.pubsearch02',
     # 'Anonymity_SearchHistory': '',
@@ -51,7 +57,7 @@ for i in range(page_num):
         'searchCondition.searchKeywords': '[\u534E][\u4E3A][\u6280][\u672F][\u6709][\u9650][\u516C][\u53F8][ ]{0,}'
     }
     try:
-        response = requests.post('http://123.233.113.66:8060/pubsearch/patentsearch/showSearchResult-startWa.shtml', headers=headers, cookies=cookies, data=data, verify=False)
+        response = requests.post('http://123.233.113.66:8060/pubsearch/patentsearch/showSearchResult-startWa.shtml', headers=headers, cookies=cookies, data=data, proxies= get_proxies(), verify=False)
         print(response.status_code)
         info = response.json()
         for j in range(12):
