@@ -55,7 +55,6 @@ def create_phone():
 
 
 def create_username():
-    char_n = string.digits
     username_n = random.randint(4, 19)
     username_l = []
     for i_1 in range(username_n):

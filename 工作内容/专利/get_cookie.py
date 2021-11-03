@@ -74,7 +74,7 @@ def recognize_text(image):
 def main():
     List = []
     info = dict()
-    url = 'http://123.233.113.66:8060/pubsearch/portal/uilogin-forwardLogin.shtml'
+    url = 'http://60.166.52.165:8030//pubsearch/portal/uilogin-forwardLogin.shtml'
     with open('./data/userinfo.json') as f:
         userinfo = json.load(f)
 
@@ -93,6 +93,7 @@ def main():
             time.sleep(1)
             word.send_keys(password)  # 输入用户密码
 
+            # 截图识别验证码
             img = driver.find_element(By.XPATH, '//*[@id="codePic"]')
             driver.save_screenshot('./data/full.png')
             left = img.location['x']
@@ -108,20 +109,22 @@ def main():
             # text = sdk.predict(image_bytes=image)
             src = cv.imread(r'./data/cut.png')
             text = recognize_text(src)
-            driver.find_element(By.XPATH, '//*[@id="j_validation_code"]').send_keys(text)
-            driver.find_element(By.XPATH, '//*[@id="loginForm"]/div[5]/a').click()
+            driver.find_element(By.XPATH, '//*[@id="j_validation_code"]').send_keys(text)  # 输入密码
+            driver.find_element(By.XPATH, '//*[@id="loginForm"]/div[5]/a').click()  # 点击登陆
             time.sleep(5)
             try:
                 driver.find_element(By.XPATH, '//*[@i="button"]').click()
                 driver.find_element(By.XPATH, '//*[@id="j_username"]').clear()
                 driver.find_element(By.XPATH, '//*[@id="j_password_show"]').clear()
                 driver.find_element(By.XPATH, '//*[@id="codePic"]').click()
+                time.sleep(2)
                 continue
             except Exception as e:
                 print(e)
                 break
         cookies = driver.get_cookies()
-        JSESSIONID = cookies[2]['value']
+        print(cookies)
+        JSESSIONID = cookies[0]['value']
         List.append(JSESSIONID)
         time.sleep(1)
         driver.quit()
