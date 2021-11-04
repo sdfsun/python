@@ -94,18 +94,19 @@ def main():
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["pageLoadStrategy"] = "none"
     userinfo = dict()
-    url = 'http://60.166.52.165:8030/pubsearch/portal/uiIndex.shtml'
+    url = 'http://218.77.183.75:81/pubsearch/portal/uiIndex.shtml'
     name_A = string.ascii_uppercase
     name_a = string.ascii_lowercase
     name_n = string.digits
-    name_t = '~!@#$%^&*()'
+    name_t = '!@#$%^&*'
     driver = getDriver()
-    min_num = 53
-    max_num = 54
+    min_num = 51
+    max_num = 60
     while min_num <= max_num:
         try:
             time.sleep(5)
-            email = 'acokuw' + str(min_num) + '@snapmail.cc'  # 邮箱
+            email = 'nuhdi' + str(min_num) + '@snapmail.cc'  # 邮箱
+            # email = 'hanne@snapmail.cc'
             username_n = random.randint(4, 19)
             password_n = random.randint(12, 19)
             username_l = []
@@ -144,7 +145,7 @@ def main():
             except AttributeError:
                 pass
             driver.find_element(By.XPATH, '//*[@id="email"]/label/div[1]/input').send_keys(email)  # 邮箱
-            driver.implicitly_wait(1)
+            time.sleep(1)
             driver.find_element(By.XPATH, '//*[@id="emailCode"]/label/div[2]/a').click()  # 点击发送验证码
             num = time.time()
             while True:
@@ -167,10 +168,19 @@ def main():
             # province_select = ['110000', '120000', '130000', '140000', '150000', '210000', '220000', '230000', '310000', '320000', '330000', '340000', '350000', '360000', '370000', '410000', '420000', '430000', '440000', '450000', '460000', '500000', '510000', '520000', '530000', '540000', '610000', '620000', '630000', '640000', '650000', '710000', ' 810000', '820000']  # 省份value
             # driver.find_element(By.XPATH, '//*[@id="higherArea"]/option[@value="' + random.choice(province_select) + '"]').click()  # 随机点击省份
             driver.implicitly_wait(1)
-            sel = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
+            count = 2
+            sel = []
             while True:
                 try:
-                    driver.find_element(By.XPATH, '//*[@id="province"]/option[@value="' + str(random.choice(sel)) + '"]').click()  # 随机市区
+                    con = driver.find_element(By.XPATH, '//*[@id="province"]/option[' + str(count) + ']').get_attribute('value')
+                    sel.append(con)
+                    count += 1
+                except NoSuchElementException:
+                    break
+
+            while True:
+                try:
+                    driver.find_element(By.XPATH, '//*[@id="province"]/option[@value="' + random.choice(sel) + '"]').click()  # 随机市区
                     break
                 except NoSuchElementException:
                     continue
@@ -186,7 +196,7 @@ def main():
             print(e)
             continue
     json_data = json.dumps(userinfo)
-    with open('./data/userinfo.json', 'w') as f:
+    with open('./data/海南.json', 'w') as f:
         f.write(json_data)
 
 

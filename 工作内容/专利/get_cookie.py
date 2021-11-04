@@ -74,8 +74,8 @@ def recognize_text(image):
 def main():
     List = []
     info = dict()
-    url = 'http://60.166.52.165:8030//pubsearch/portal/uilogin-forwardLogin.shtml'
-    with open('./data/userinfo.json') as f:
+    url = 'http://111.56.38.173/pubsearch/portal/uilogin-forwardLogin.shtml'
+    with open('./data/内蒙古.json') as f:
         userinfo = json.load(f)
 
     for username in userinfo.keys():
@@ -124,12 +124,12 @@ def main():
                 break
         cookies = driver.get_cookies()
         print(cookies)
-        JSESSIONID = cookies[0]['value']
+        JSESSIONID = cookies[-1]['value']
         List.append(JSESSIONID)
         time.sleep(1)
         driver.quit()
-        info['JSESSIONID'] = List
-        with open('./data/test.json', 'w') as s:
+        info['http://111.56.38.173'] = List
+        with open('./data/内蒙cookie.json', 'w') as s:
             json.dump(info, s)
 
 
